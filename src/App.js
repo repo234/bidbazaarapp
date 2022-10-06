@@ -1,8 +1,11 @@
-import logo from "./logo.svg";
 import "./App.css";
-
+import Routings from "./components/Routings";
 function App() {
-  return <div className="App"></div>;
+  return (
+    <div className="App ">
+      <Routings />
+    </div>
+  );
 }
 
 export default App;
