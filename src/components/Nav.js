@@ -5,12 +5,21 @@ import { Link } from "react-router-dom";
 
 const App = () => {
   const [nav, setNav] = useState(false);
+
   const handleClick = () => {
     setNav(!nav);
   };
+
+  const loggedOut = () => {
+    localStorage.removeItem("token");
+    window.location.reload();
+  };
+  const isLoggedIn = () => {
+    return localStorage.getItem("token") ? true : false;
+  };
+
   return (
-    <div className="w-screen   drop-shadow-lg">
-      {" "}
+    <div className=" drop-shadow-lg ">
       <div className=" items-center flex bg-orange h-full w-full relative">
         <div className="w-[50px] md:flex-shrink-0">
           <img src={logo} alt="loding..." />
@@ -27,7 +36,7 @@ const App = () => {
             </li>
 
             <li className="">
-              <Link to="/onbid">Onbid</Link>
+              <Link to="/auction">Auction</Link>
             </li>
             <li className="">
               <Link to="/seller">Sell</Link>
@@ -41,18 +50,29 @@ const App = () => {
           </ul>
         </div>
         <div>
-          <div className="  h-12 hidden absolute right-1 top-1 md:flex pr-4 ">
-            <button className="mr-3 pt-0 ">
-              {" "}
-              <Link to="/login">Login</Link>
-            </button>
-            <button className="pt-0 ">
-              {" "}
-              <Link to="/cusSignup">Sign up</Link>
-            </button>
-          </div>
+          {isLoggedIn() ? (
+            <div className=" h-12 hidden absolute  top-1 md:flex  ">
+              <button
+                className=" mr-5 md:px-3 md:py-1 self-center px-10 py-1 "
+                onClick={loggedOut}
+              >
+                {" "}
+                <Link to="/">Logout</Link>
+              </button>
+            </div>
+          ) : (
+            <div className=" h-12 hidden absolute  top-1 md:flex  ">
+              <button className=" mr-5 md:px-3 md:py-1 self-center px-10 py-1 ">
+                {" "}
+                <Link to="/login">Login</Link>
+              </button>
+              <button className="   md:px-3 md:py-1 self-center px-10 py-1 ">
+                {" "}
+                <Link to="/cusSignup">Sign up</Link>
+              </button>
+            </div>
+          )}
         </div>
-
         <div className="md:hidden w-full  relative" onClick={handleClick}>
           {!nav ? (
             <MenuOutline className="w-5 object-right absolute right-5 " />
@@ -70,7 +90,7 @@ const App = () => {
           <Link to="/">Home</Link>
         </li>
         <li className="border-b-2 border-yellow w-full">
-          <Link to="/onbid">Onbid</Link>
+          <Link to="/auction">Auction</Link>
         </li>
         <li className="border-b-2 border-yellow w-full">
           <Link to="/contactus">Contactus</Link>
@@ -78,14 +98,22 @@ const App = () => {
         <li className="border-b-2 border-yellow w-full">
           <Link to="/aboutus">Aboutus</Link>
         </li>
-        <div className="flex flex-col m-6">
-          <button className="mb-4 p-0 mx-[30%]">
-            <Link to="/login">Login</Link>
-          </button>
-          <button className=" p-0 mx-[30%]">
-            <Link to="/cusSignup">Sign up</Link>
-          </button>
-        </div>
+        {isLoggedIn() ? (
+          <div className="flex flex-col m-6">
+            <button className="mb-4 p-0 mx-[30%]" onClick={loggedOut}>
+              <Link to="/login">Log out</Link>
+            </button>
+          </div>
+        ) : (
+          <div className="flex flex-col m-6">
+            <button className="mb-4 p-0 mx-[30%]">
+              <Link to="/login">Login</Link>
+            </button>
+            <button className=" p-0 mx-[30%]">
+              <Link to="/cusSignup">Sign up</Link>
+            </button>
+          </div>
+        )}
       </ul>
     </div>
   );

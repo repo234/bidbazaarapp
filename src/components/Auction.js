@@ -1,9 +1,9 @@
 import React from "react";
-import Search from "./search";
-import bidbg from "../asserts/bidbg.jpeg";
-import Products from "./Products";
+import Search from "../components/Auctions/Search";
 
-export default function Onbid() {
+import bidbg from "../asserts/bidbg.jpeg";
+
+export default function Auction() {
   return (
     <div>
       <div>
@@ -19,9 +19,7 @@ export default function Onbid() {
       <div>
         <Search />
       </div>
-      <div className="border-4">
-        <Products />
-      </div>
+      <div className="border-4"></div>
     </div>
   );
 }

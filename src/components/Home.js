@@ -11,10 +11,10 @@ export default function Home() {
     <div className="  w-full  bg-grey flex flex-col justify-between">
       <div className="grid md:grid-cols-2  m-auto border-b-4 border-orange ">
         <div className="flex flex-col justify-center md:items-start lg:px-20 px-2 py-8">
+          <h1 className="px-[20%] pt-8 font-bold  md:py-10 py-7 text-4xl ">
+            Your Online Bid Store
+          </h1>
           <p className="text-2xl font-semibold px-20 md:px-30">
-            <h1 className="pt-8 font-bold  md:py-10 py-7 text-4xl">
-              Your Online Bid Store
-            </h1>
             One market palce where you can bid and win your favourite products
             (used products) in your desired price
           </p>

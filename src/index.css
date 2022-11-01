@@ -8,7 +8,7 @@
          hover:text-yellow hover:text-xl
     }
     button{
-        @apply text-white bg-blue  border-2 text-xl rounded-lg 
+        @apply text-white bg-black  border-2 text-xl rounded-lg  font-semibold
         hover:text-yellow hover:text-xl hover:bg-orange
     }
 }
