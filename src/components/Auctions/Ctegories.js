@@ -124,6 +124,12 @@ export default function Ctegories() {
           </div>
         </div>
       </div>
+
+
+
+
+      //-------
+     
     </div>
   );
 }

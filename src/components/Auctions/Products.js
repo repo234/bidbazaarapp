@@ -1,7 +1,8 @@
-import React from "react";
-import Categories from "./Ctegories";
-
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 export default function Products() {
+  const [products, setProducts] = useState();
+
   return (
     <div>
       <section class="text-gray-600 body-font">

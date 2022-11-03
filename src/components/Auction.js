@@ -1,9 +1,10 @@
 import React from "react";
 import Search from "../components/Auctions/Search";
-
 import bidbg from "../asserts/bidbg.jpeg";
+import Products from "./Auctions/Products";
 
 export default function Auction() {
+ 
   return (
     <div>
       <div>
@@ -19,7 +20,9 @@ export default function Auction() {
       <div>
         <Search />
       </div>
-      <div className="border-4"></div>
+      <div className="border-4">
+        <Products />
+      </div>
     </div>
   );
 }

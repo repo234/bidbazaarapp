@@ -25,12 +25,12 @@ const App = () => {
           <img src={logo} alt="loding..." />
         </div>
         <div>
-          <h1 className=" mr-4 text-3xl font-bold sm:text-4xl text-yellow">
+          <h1 className=" mr-4 text-3xl font-bold sm:text-4xl text-white">
             BidBazaar
           </h1>
         </div>
-        <div className="ml-4 ">
-          <ul className="hidden md:flex ">
+        <div className=" ml-[15%] ">
+          <ul className="hidden md:flex  ">
             <li className=" ">
               <Link to="/">Home</Link>
             </li>
@@ -42,10 +42,10 @@ const App = () => {
               <Link to="/seller">Sell</Link>
             </li>
             <li className="">
-              <Link to="/contactus">Contactus</Link>
+              <Link to="/contactus">Contact us</Link>
             </li>
             <li className="">
-              <Link to="/aboutus">Aboutus</Link>
+              <Link to="/aboutus">About us</Link>
             </li>
           </ul>
         </div>
@@ -61,8 +61,8 @@ const App = () => {
               </button>
             </div>
           ) : (
-            <div className=" h-12 hidden absolute  top-1 md:flex  ">
-              <button className=" mr-5 md:px-3 md:py-1 self-center px-10 py-1 ">
+            <div className=" h-12 hidden absolute top-1 md:flex ml-[20%] ">
+              <button className=" mr-2 md:px-3 md:py-1 bg-orange border-none px-10 py-1 ">
                 {" "}
                 <Link to="/login">Login</Link>
               </button>
@@ -83,7 +83,9 @@ const App = () => {
       </div>
       <ul
         className={
-          !nav ? "hidden" : "absolute bg-orange w-full px-8 font-bold text-xl  "
+          !nav
+            ? "hidden"
+            : " relative bg-orange w-full px-8 font-bold text-xl  "
         }
       >
         <li className="border-b-2 border-yellow  w-full">
@@ -93,13 +95,13 @@ const App = () => {
           <Link to="/auction">Auction</Link>
         </li>
         <li className="border-b-2 border-yellow w-full">
-          <Link to="/contactus">Contactus</Link>
+          <Link to="/contactus">Contact us</Link>
         </li>
         <li className="border-b-2 border-yellow w-full">
-          <Link to="/aboutus">Aboutus</Link>
+          <Link to="/aboutus">About us</Link>
         </li>
         {isLoggedIn() ? (
-          <div className="flex flex-col m-6">
+          <div className="flex flex-col m-6 mr-5">
             <button className="mb-4 p-0 mx-[30%]" onClick={loggedOut}>
               <Link to="/login">Log out</Link>
             </button>

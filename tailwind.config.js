@@ -2,7 +2,11 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        "hero-img": "url('/src/asserts/bg1.jpg')",
+      },
+    },
     colors: {
       orange: "#ef7e06",
       yellow: "#fff72b",
