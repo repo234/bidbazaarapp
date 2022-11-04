@@ -4,50 +4,50 @@ import { Link } from "react-router-dom";
 export default function Footer() {
   return (
     <div>
-      <footer className="bg-grey  border-t-4 border-orange">
+      <footer className="bg-orange text-white ">
         <div className="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
           <div className="lg:flex lg:gap-8">
             <div className="grid grid-cols-2 gap-8 mt-8 lg:mt-0 lg:grid-cols-4 lg:gap-y-16">
               <div className="col-span-2  pt-6  sm:col-span-1 ">
-                <p className="font-bold text-orange">Important links</p>
+                <p className="font-bold text-white">Important links</p>
 
                 <nav className="flex flex-col mt-6 space-y-4 text-sm text-gray-300">
                   <div className="inline-block"> How it works </div>
                   <div className="inline-block">
                     {" "}
-                    <Link to="/onbid">Onbid-products</Link>
+                    <Link to="/onbid" className="text-white">Onbid-products</Link>
                   </div>
                   <div className="inline-block" href="">
                     {" "}
-                    <Link to="/cusSignup">Sign up</Link>
+                    <Link to="/cusSignup" className="text-white">Sign up</Link>
                   </div>
                   <div className="inline-block" href="">
                     {" "}
-                    <Link to="/login">Login</Link>
+                    <Link to="/login" className="text-white">Login</Link>
                   </div>
                 </nav>
               </div>
 
               <div className="col-span-2 pt-6 border-t sm:col-span-1 border-white/10">
-                <p className="font-bold text-orange">Company</p>
+                <p className="font-bold ">Company</p>
 
-                <nav className="flex flex-col mt-6 space-y-4 text-sm text-gray-300">
-                  <div className="inline-block" href="">
+                <nav className="flex flex-col mt-6 space-y-4  text-sm 0">
+                  <div className="inline-block " href="">
                     {" "}
-                    <Link to="/aboutus">About us</Link>
+                    <Link to="/aboutus" className="text-white">About us</Link>
                   </div>
                 </nav>
               </div>
 
               <div className="col-span-2 pt-6 border-t sm:col-span-1 border-white/10">
-                <p className="font-bold text-orange">Helpful Links</p>
+                <p className="font-bold ">Helpful Links</p>
 
-                <nav className="flex flex-col mt-6 space-y-4 text-sm text-gray-300">
-                  <div className="inline-block" href="">
+                <nav className="flex flex-col mt-6 space-y-4 text-sm ">
+                  <div className="inline-block text-white" href="">
                     {" "}
-                    <Link to="/contactus">Contact us</Link>
+                    <Link to="/contactus" className="text-white">Contact us</Link>
                   </div>
-                  <div className="inline-block" href="">
+                  <div className="inline-block text-white" href="">
                     {" "}
                     Chat{" "}
                   </div>
@@ -55,21 +55,21 @@ export default function Footer() {
               </div>
 
               <div className="col-span-2 pt-6 border-t sm:col-span-1 border-white/10">
-                <p className="font-bold text-orange">Legal</p>
+                <p className="font-bold ">Legal</p>
 
-                <nav className="flex flex-col mt-6 space-y-4 text-sm text-gray-300">
-                  <div className="inline-block" href="">
+                <nav className="flex flex-col mt-6 space-y-4 text-sm">
+                  <div className="inline-block text-white"  href="">
                     {" "}
-                    <Link to="/privacypolicy">Privacy Policy</Link>
+                    <Link to="/privacypolicy" className="text-white">Privacy Policy</Link>
                   </div>
-                  <div className="inline-block" href="">
+                  <div className="inline-block text-white" href="">
                     {" "}
-                    <Link to="/terms">Terms and conditions</Link>
+                    <Link to="/terms" className="text-white">Terms and conditions</Link>
                   </div>
                 </nav>
               </div>
 
-              <div className="flex col-span-2 gap-4 text-gray-500 lg:col-span-5">
+              <div className="flex col-span-2 gap-4 lg:col-span-5">
                 <div
                   className="hover:opacity-75"
                   href="https://facebook.com/"
@@ -137,7 +137,7 @@ export default function Footer() {
 
           <div className="pt-8 mt-12 border-t border-white/10">
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-              <p className="text-xs text-center text-gray-400 lg:text-left">
+              <p className="text-xs text-center  lg:text-left">
                 Copyright &copy; 2022. Company Name. All rights reserved.
               </p>
             </div>

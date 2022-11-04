@@ -1,21 +1,21 @@
-import Nav from "./Nav";
+import Header from "../common/header/Header";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./Home";
+import Home from "./Home/Home";
 import Auction from "./Auction";
-import Login from "./Login";
+import Login from "../Auth/Login";
 import Contactus from "./Contactus";
 import Aboutus from "./Aboutus";
 import Sell from "./Sell";
-import Footer from "./Footer";
+import Footer from "../common/Footer";
 import Categories from "./Auctions/Ctegories";
-import CusSignup from "./Signup";
+import CusSignup from "../Auth/Signup";
 import Policy from "./Policy";
 import Terms from "./Terms";
 function Routings() {
   return (
     <Router>
-      <Nav />
       <div>
+        <Header />
         <Routes>
           <Route path="/seller" element={<Sell />} />
           <Route path="/aboutus" element={<Aboutus />} />
@@ -28,8 +28,8 @@ function Routings() {
           <Route path="/categories" element={<Categories />} />
           <Route path="/" element={<Home />} />
         </Routes>
+        <Footer />
       </div>
-      <Footer />
     </Router>
   );
 }
