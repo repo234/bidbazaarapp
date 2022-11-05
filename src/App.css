@@ -12,7 +12,7 @@ body {
   background-color: #ffffff;
 }
 .background {
-  background: #f6f9fc;
+  background: #fff0e6;
   padding: 50px 0;
 }
 .container {
@@ -133,11 +133,11 @@ button {
 /*---------product-----------*/
 .product {
   background: #fff;
-  padding: 20px;
+  padding:10px;
   position: relative;
   border-radius: 8px;
   box-shadow: rgb(3 0 71 / 9%) 0px 1px 3px;
-  margin: 10px;
+  margin: 20px;
 }
 .product h3 {
   font-weight: 400;
@@ -246,4 +246,9 @@ button {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 10px;
+}
+.img{
+  height: 250px;
+  width:250px;
+
 }

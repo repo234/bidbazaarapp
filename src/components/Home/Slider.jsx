@@ -30,7 +30,7 @@ const SliderHome = () => {
     <div className="slider h-[540px] bg-white flex items-center mt-8 justify-between mobile:hidden">
       {/* left Arrow */}
       <div className={arrowStyle} onClick={prevSlide}>
-      <i class="fa-solid fa-caret-left font-[50px]"></i>
+      <i className="fa-solid fa-caret-left font-[50px]"></i>
       
       </div>
 
@@ -63,7 +63,7 @@ const SliderHome = () => {
       {/* Right Arrow */}
 
       <div className={arrowStyle} onClick={nextSlide}>
-      <i class="fa-solid fa-caret-right font-[50px]"></i>
+      <i className="fa-solid fa-caret-right font-[50px]"></i>
       </div>
     </div>
   );

@@ -16,4 +16,13 @@ export const SliderApi = [
     },
     background: " bg-[#ffd028]",
   },
+  {
+    src: "srcassertssliderimg2.webp",
+    active: true,
+    content: {
+      h2: "Bhai mein  hn",
+      p: "Upto 40% off",
+    },
+    background: " bg-[#ffd028]",
+  },
 ];
