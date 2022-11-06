@@ -58,10 +58,6 @@ export default function NewArrivalPro({ productItems }) {
   const [data] = useState(Data.productItems);
  
 
-  const arrowStyle =
-    "  flex justify-center items-center  hover:cursor-pointer";
-
-
   return (
     <>
     <Slider {...settings}>

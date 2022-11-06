@@ -26,13 +26,13 @@ const Wrapper = () => {
   ]
   return (
     <>
-    <section >
-  <div class="container px-5 py-20 mx-auto ">
-    <div class="flex flex-wrap -m-4">
+    <section className="my-[10%]">
+      <div class=" container px-5  mx-auto">
+        <div class="  flex flex-wrap -m-4">
     {data.map((val, index) => {
             return (
-                <div class="p-4 md:w-1/4 ">
-              <div className='product   ' key={index}>
+                <div class=" lg:w-1/4 md:w-1/2 lg:p-2 p-4 ">
+              <div className='product ' key={index}>
                 <div className='img icon-circle'>
                   <i>{val.cover}</i>
                 </div>

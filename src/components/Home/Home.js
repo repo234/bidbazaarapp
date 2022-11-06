@@ -11,14 +11,14 @@ const Home = () => {
   return (
     <>
       <section className="home ">
-        <div className="container d_flex">
+        <div className="container  d_flex">
           <SliderHome />
         </div>
 
         <NewArrivals productItems={productItems} />
 
         <HotSelling productItems={productItems} />
-        <div className="bg-grey">
+        <div className="bg-black ">
           <Wrapper />
         </div>
       </section>

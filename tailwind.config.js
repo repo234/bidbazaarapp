@@ -10,8 +10,9 @@ module.exports = {
     colors: {
       orange: " rgb(202, 59, 16)",
       yellow: "#fff72b",
+      sky: "#f6f9fc",
       white: "#ffffff",
-      grey: " #fff0e6",
+      pink: " #fff0e6",
       black: "#262626",
     },
     screens: {

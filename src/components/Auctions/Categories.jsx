@@ -1,52 +1,7 @@
 import React from "react"
 
 const Categories = () => {
-  const data = [
-    {
-      
-      cateName: "Fashion",
-    },
-    {
-     
-      cateName: "Electronic",
-    },
-    {
-     
-      cateName: "Cars",
-    },
-    {
-      
-      cateName: "Home & Garden",
-    },
-    {
-    
-      cateName: "Gifts",
-    },
-    {
-   
-      cateName: "Music",
-    },
-    {
-     
-      cateName: "Health & Beauty",
-    },
-    {
-     cateName: "Pets",
-    },
-    {
-    
-      cateName: "Baby Toys",
-    },
-    {
-     
-      cateName: "Groceries",
-    },
-    {
-      
-      cateName: "Books",
-    },
-  ]
-
+ 
   return (
     <>
       <div className='category'>

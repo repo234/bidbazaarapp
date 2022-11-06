@@ -1,7 +1,7 @@
 import Header from "../common/header/Header";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Home/Home";
-import Auction from "./Auction";
+import Auction from "./Auctions/Auction";
 import Login from "../Auth/Login";
 import Contactus from "./Contactus";
 import Aboutus from "./Aboutus";

@@ -4,17 +4,18 @@ import Data from '../../SliderImages/Data';
 
 export default function HotSellingPro({producctItems}) {
   const [data] = useState(Data.productItems);
+ 
   return (
     <div>
-    <section class="text-gray-600 body-font">
-      <div class="first-letter:container px-5  mx-auto">
+    <section >
+      <div class=" px-5 ml-[20%] md:ml-1 mx-auto">
         <div class="  flex flex-wrap -m-4">
   
         {data.map((product) => {
           return (
-            <div class="lg:w-1/4 md:w-1/2 md:p-2 p-4 w-full">
+            <div class="lg:w-1/4 md:w-1/2 ">
      
-            <div className="  product mtop ">
+            <div className="  product mtop  ">
             <div className="overflow-hidden  "   key={product.id}>
               <div className=" border-b-2  border-orange">
                 <img src={product.cover} alt="" />

@@ -52,8 +52,8 @@ export default function Login() {
   };
   return (
     <div>
-      <div className="relative flex bg-white flex-col justify-center min-h-screen overflow-hidden ">
-        <div className="w-full p-6 m-auto bg-grey rounded-md shadow-md lg:max-w-xl">
+      <div className="relative flex   flex-col justify-center min-h-screen overflow-hidden ">
+        <div className="w-full p-6 m-auto bg-pink rounded-md shadow-md lg:max-w-xl">
           <div className="w-[15%] h-[15%]  rounded-full inline-flex items-center justify-center bg-gray-200 text-gray-400">
             <img
               alt="content"

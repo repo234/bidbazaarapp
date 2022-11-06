@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import "./Slider.css";
 import {SliderApi} from '../../SliderImages/SliderApi';
+import { useNavigate } from "react-router-dom";
 const SliderHome = () => {
   // Styles
   const slideStyle = "slide flex items-center justify-center h-[100%]";
@@ -26,8 +27,9 @@ const SliderHome = () => {
       setActiveSlide(activeSlide + 1);
     }
   };
+  const navigate = useNavigate();
   return (
-    <div className="slider h-[540px] bg-white flex items-center mt-8 justify-between mobile:hidden">
+    <div className="slider h-[540px]  flex items-center mt-8 justify-between mobile:hidden">
       {/* left Arrow */}
       <div className={arrowStyle} onClick={prevSlide}>
       <i className="fa-solid fa-caret-left font-[50px]"></i>
@@ -51,8 +53,10 @@ const SliderHome = () => {
                 <div className="discription flex flex-col flex-1 place-items-start justify-center ml-11">
                   <h2 className="text-[55px]">{slide.content.h2}</h2>
                   <p className=" text-[30px]">{slide.content.p}</p>
-                  <button className="btn">
-                    Shop Now
+                  <button className="mt-8 p-3" onClick={()=>{
+                         navigate("/cusSignup");
+                  }}>
+                  Sign up
                   </button>
                 </div>
               </div>
