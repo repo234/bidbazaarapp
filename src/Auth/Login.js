@@ -2,16 +2,19 @@ import logo from "../asserts/Logo.png";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { login } from "../actions/index";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Login() {
   const navigate = useNavigate();
-
+  const auth = useSelector((state) => state.user.auth);
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
+  const [error, setError] = useState("");
   let name, value;
+  const dispatch = useDispatch();
   const handleInp = (e) => {
     name = e.target.id;
     value = e.target.value;
@@ -20,36 +23,12 @@ export default function Login() {
 
   const sendData = (e) => {
     e.preventDefault();
-    axios
-      .post(
-        "/api/users/login",
-        {
-          email: user.email,
-          password: user.password,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "x-auth-token": localStorage.getItem("token"),
-          },
-        }
-      )
-      .then(function (res) {
-        if (
-          res.data.status === "Logged in successfully" &&
-          res.data.role === "customer"
-        ) {
-          alert(res.data.status);
-          window.localStorage.setItem("token", res.data.data);
-          navigate("/auction");
-          window.location.reload();
-        } else alert("you are not authorized");
-      })
-      .catch(function (error) {
-        console.log(error);
-        alert("Something went wrong");
-      });
+    dispatch(login(user));
   };
+
+  if (auth) {
+    navigate("./auction");
+  }
   return (
     <div>
       <div className="relative flex   flex-col justify-center min-h-screen overflow-hidden ">

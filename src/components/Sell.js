@@ -18,7 +18,7 @@ const data = [
 ];
 
 export default function Sell() {
-  const arrowStyle = "flex justify-center items-center hover:cursor-pointer";
+  const arrowStyle = "flex  justify-center items-center hover:cursor-pointer";
   const [value, setValue] = useState("");
 
   const handleChange = (event) => {
@@ -47,8 +47,8 @@ export default function Sell() {
 
   return (
     <div>
-      <div className=" h-full flex justify-center flex-col lg:flex-row ">
-        <div className="w-full lg:w-1/2  flex items-center justify-center">
+      <div className=" h-full flex justify-center bg-sky flex-col lg:flex-row ">
+        <div className="w-full lg:w-1/2 flex items-center justify-center">
           <div className={arrowStyle} onClick={prevSlide}>
             <i className="fa-solid fa-caret-left font-[50px]"></i>
           </div>
@@ -74,7 +74,7 @@ export default function Sell() {
           </div>
         </div>
 
-        <div className=" product w-full flex-[1.3] lg:w-1/2 flex-wrap flex flex-col sm:items-start md:items-center  justify-items-center mt-10 ">
+        <div className=" product w-full  flex-[1.3] lg:w-1/2 flex-wrap flex flex-col sm:items-start md:items-center  justify-items-center mt-10 ">
           <h1 className=" mb-5 text-[40px] ">Cream Hoody Orignal</h1>
           <div>------------------------------------------------------</div>
           <div className="flex">
@@ -115,11 +115,18 @@ export default function Sell() {
         </div>
       </div>
       <hr className="border border-orange" />
+      <div className="container">
+        <div className=" pt-5   text-xl">Item Info</div>
+        <div className="p-5 ">
+          <h3 className="text-orange mt-3">Quantity:</h3>
+          <p className="mt-3">4</p>
 
-      <div className="border-2 container text-xl">Item Info</div>
-      <i class="fa-brands fa-product-hunt"></i>
-
-      <div></div>
+          <h3 className="text-orange mt-3">Condition:</h3>
+          <p className="mt-3">3 month used</p>
+          <h3 className="text-orange mt-3">Discription:</h3>
+          <p className="mt-3">This is a board</p>
+        </div>
+      </div>
     </div>
   );
 }

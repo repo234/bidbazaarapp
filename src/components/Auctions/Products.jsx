@@ -1,6 +1,11 @@
 import React from 'react'
+import { useState } from 'react'
 import Product from './Product'
-export default function Products({ producctItems }) {
+
+
+
+export default function Products() {
+
   return (
     <>
 
@@ -9,11 +14,12 @@ export default function Products({ producctItems }) {
         <div className=" heading flex">
           <div className=" w-full ">
          
-           <div className='text-[25px] flex'>   <i className="fa fa-bolt"></i>
-            <h1>On Auction</h1></div>
-           <Product productItems={producctItems} />
+           <div className='container text-[25px] flex'>   
+
+          
+           <Product  />
          </div>
-        
+        </div>
       </div>
     </section>
   </>

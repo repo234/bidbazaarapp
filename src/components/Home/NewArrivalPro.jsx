@@ -76,13 +76,7 @@ export default function NewArrivalPro({ productItems }) {
               </div>
               <div className="product-details  ">
                 <h3 className="underline " >{product.name}</h3>
-                <div className="rate">
-                  <i className="fa fa-star"></i>
-                  <i className="fa fa-star"></i>
-                  <i className="fa fa-star"></i>
-                  <i className="fa fa-star"></i>
-                  <i className="fa fa-star"></i>
-                </div>
+               
                 <div className="price font-semibold ">
                   <h4>RS {product.price}</h4>
                 </div>

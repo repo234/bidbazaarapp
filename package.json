@@ -2,7 +2,7 @@
   "name": "bidbazaar",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:4000",
+  "proxy": "http://localhost:3000",
   "dependencies": {
     "@heroicons/react": "^2.0.11",
     "@testing-library/jest-dom": "^5.16.5",
@@ -14,14 +14,14 @@
     "jwt-decode": "^3.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-redux": "^8.0.4",
+    "react-redux": "^8.0.5",
     "react-router-dom": "^6.4.1",
     "react-scripts": "5.0.1",
     "react-slick": "^0.29.0",
     "react-toastify": "^9.0.8",
     "redux": "^4.2.0",
+    "redux-thunk": "^2.4.2",
     "slick-carousel": "^1.8.1",
-    "swiper": "^8.4.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

@@ -7,11 +7,22 @@ import Contactus from "./Contactus";
 import Aboutus from "./Aboutus";
 import Sell from "./Sell";
 import Footer from "../common/Footer";
-import Categories from "./Auctions/Ctegories";
+import ProductDetail from "./Auctions/ProductDetail";
 import CusSignup from "../Auth/Signup";
 import Policy from "./Policy";
 import Terms from "./Terms";
+import { useDispatch } from "react-redux";
+import { getAllCategory, allProducts } from "../actions/index";
+import { useEffect } from "react";
+
 function Routings() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllCategory());
+  }, []);
+  useEffect(() => {
+    dispatch(allProducts());
+  }, []);
   return (
     <Router>
       <div>
@@ -25,7 +36,7 @@ function Routings() {
           <Route path="/privacypolicy" element={<Policy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/cusSignup" element={<CusSignup />} />
-          <Route path="/categories" element={<Categories />} />
+          <Route path="/productDetail" element={<ProductDetail />} />
           <Route path="/" element={<Home />} />
         </Routes>
         <Footer />

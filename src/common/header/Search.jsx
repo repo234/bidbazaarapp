@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../asserts/Logo.png";
 
-const Search = ({ CartItem }) => {
+const Search = () => {
+  const [search,setSearch]=useState()
   const [screenSize, getDimension] = useState({
     dynamicWidth: window.innerWidth,
     dynamicHeight: window.innerHeight,
@@ -14,6 +15,10 @@ const Search = ({ CartItem }) => {
       dynamicHeight: window.innerHeight,
     });
   };
+
+const handleText=(e)=>{
+console.log(e.target.value())
+}
 
   useEffect(() => {
     window.addEventListener("resize", setDimension);
@@ -39,7 +44,10 @@ const Search = ({ CartItem }) => {
             </div>
             <div className="search-box f_flex">
               <i className="fa fa-search"></i>
-              <input type="text" placeholder="Search and hit enter..." />
+              <input type="text" placeholder="Search and hit enter..." 
+              onChange={()=>{
+               handleText()
+              }}/>
               <button className="py-2 px-4 rounded-r-full border">
                 Search
               </button>

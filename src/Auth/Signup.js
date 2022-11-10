@@ -9,7 +9,7 @@ export default function Signup() {
   const [agree, setAgree] = useState(true);
   const [validation, setValidation] = useState(false);
   const [user, setUser] = useState({
-    user_name: "",
+    name: "",
     email: "",
     password: "",
     conPass: "",
@@ -36,7 +36,7 @@ export default function Signup() {
         .post(
           "/api/users/register",
           {
-            name: user.user_name,
+            name: user.name,
             email: user.email,
             password: user.password,
             role: user.role,
@@ -60,13 +60,25 @@ export default function Signup() {
     }
   };
   const validate = () => {
-    if (!user.conPass) {
+    if (!user.name) {
+      alert("User name must be filled");
+    } else if (!user.email) {
+      alert("Email must be filled");
+    } else if (!user.password) {
+      alert("Password must be filled");
+    } else if (!user.conPass) {
       alert("Confirm password must be filled");
     } else if (!user.check) {
       alert("must agree with term and conditions");
     } else if (user.password !== user.conPass) {
       alert("Passwords doen not matched");
-    } else {
+    } else if (
+      (user.name,
+      user.email,
+      user.password,
+      user.check,
+      user.password === user.conPass)
+    ) {
       setValidation(true);
     }
   };
@@ -92,7 +104,7 @@ export default function Signup() {
               <input
                 type="text"
                 className="block w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                id="user_name"
+                id="name"
                 value={user.name}
                 onChange={handleInp}
               />
@@ -102,7 +114,7 @@ export default function Signup() {
                 Email
               </label>
               <input
-                type="email"
+                type="text"
                 className="block w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                 id="email"
                 value={user.email}

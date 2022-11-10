@@ -1,28 +1,32 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
   // Toogle Menu
   const [MobileMenu, setMobileMenu] = useState(false);
-const [category,setCategory]=useState(false);
+  const auth = useSelector(state=> state.user.auth)
+  
+  const [category, setCategory] = useState(false);
   const loggedOut = () => {
     localStorage.removeItem("token");
     window.location.reload();
-  };
-  const isLoggedIn = () => {
-    return localStorage.getItem("token") ? true : false;
   };
 
   return (
     <>
       <header className="header">
         <div className="container d_flex">
-          <div className="catgrories  d_flex" onClick={()=>{setCategory(!category)} }>
+          <div
+            className="catgrories  d_flex"
+            onClick={() => {
+              setCategory(!category);
+            }}
+          >
             <span className="fa-solid fa-border-all"></span>
             <h4>
               Categories <i className="fa fa-chevron-down"></i>
             </h4>
-            
           </div>
           <div className="navlink">
             <div className="md:hidden navlink  ">
@@ -52,21 +56,22 @@ const [category,setCategory]=useState(false);
                 <li>
                   <Link to="/auction">auction</Link>
                 </li>
-                <li>
-                  <Link to="/seller">Sell</Link>
-                </li>
+
                 <li>
                   <Link to="/contactus">contact us</Link>
                 </li>
                 <li>
                   <Link to="/aboutus">about us</Link>
                 </li>
-                {isLoggedIn() ? (
-                  <li>
+                {auth ?(
+                  <li onClick={loggedOut}>
                     <Link to="/">logout</Link>
                   </li>
                 ) : (
                   <div className="flex">
+                    <li>
+                      <Link to="/seller">Sell</Link>
+                    </li>
                     <li>
                       <Link to="/login">login</Link>
                     </li>
