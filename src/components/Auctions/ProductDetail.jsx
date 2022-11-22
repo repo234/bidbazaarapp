@@ -1,13 +1,26 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import Countdown from "react-countdown";
 
-
+const renderer = ({ days, hours, minutes, seconds, completed, props }) => {
+  if (completed) {
+    return null;
+  } else {
+    return (
+      <span>
+        <div className="  flex flex-wrap -m-4 ml-2  ">
+          <div className=" jsutify-content-between align-item-center"></div>
+          {days * 24 + hours} : {minutes} : {seconds}
+        </div>
+      </span>
+    );
+  }
+};
 
 export default function ProductDetail() {
-
-  const product= useSelector(state=> state.products.product)
+  const product = useSelector((state) => state.products.product);
   const arrowStyle = "flex  justify-center items-center hover:cursor-pointer";
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(0);
   const handleChange = (event) => {
     const result = event.target.value.replace(/\D/g, "");
     setValue(result);
@@ -32,6 +45,9 @@ export default function ProductDetail() {
     }
   };
 
+  const setBid=()=>{
+   
+  }
   return (
     <div>
       <div className=" h-full flex justify-center bg-sky flex-col lg:flex-row ">
@@ -39,21 +55,18 @@ export default function ProductDetail() {
           <div className={arrowStyle} onClick={prevSlide}>
             <i className="fa-solid fa-caret-left font-[50px]"></i>
           </div>
-
           {slides.map((slide, index) => {
-            
             if (index === activeSlide) {
               return (
                 <div
                   className=" w-auto  lg:w-1/2 flex-1 flex items-center justify-center"
-                  
                   key={index}
                 >
                   <img
                     src={`http://localhost:3000/uploads/${slide.img}`}
                     className="product"
                     alt="product_image"
-                    style={{height: "450px"}}
+                    style={{ height: "450px" }}
                   />
                 </div>
               );
@@ -68,10 +81,13 @@ export default function ProductDetail() {
           <h1 className=" mb-5 text-[40px] ">{product.name}</h1>
           <div>------------------------------------------------------</div>
           <div className="flex">
-            <div className=" mr-8">
-              <h4>
-                time left: <b>4h 5m</b>{" "}
-              </h4>
+            <div className="mt-1  mr-8">
+                  <Countdown
+                    date={ product.duration}
+                    item={product}
+                    renderer={renderer}
+                  />
+      
             </div>
             <div>
               <h4>
@@ -82,10 +98,10 @@ export default function ProductDetail() {
           <div>------------------------------------------------------</div>
           <div className="  flex flex-col place-self-start  w-full">
             <p className="mt-7 text-xl">
-              Current Price - <b>RS: 70</b>
+              Current Price - <b>RS: {product.currentPrce}</b>
             </p>
             <p className="mt-7 text-xl">
-              Minimun Bid - <b>RS: 70</b>
+              Minimun Bid - <b>RS: {product.currentPrce + 1}</b>
             </p>
 
             <div className="mt-7 flex p-2 w-full text-xl">
@@ -100,7 +116,9 @@ export default function ProductDetail() {
                 />
               </div>
             </div>
-            <button className="mt-8 p-3 w-[50%] ml-[25%]">place bid</button>
+            <button className="mt-8 p-3 w-[50%] ml-[25%]" onClick={()=>{
+
+            }}>place bid</button>
           </div>
         </div>
       </div>

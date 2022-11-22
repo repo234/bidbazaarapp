@@ -10,8 +10,6 @@ const Navbar = () => {
   const [category, setCategory] = useState(false);
   const loggedOut = () => {
     localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    localStorage.removeItem("persist:root");
     window.location.reload();
   };
 
@@ -53,31 +51,26 @@ const Navbar = () => {
                 onClick={() => setMobileMenu(false)}
               >
                 <li>
-                  <Link to="/">home</Link>
+                  <Link to="/">Profile</Link>
                 </li>
                 <li>
-                  <Link to="/auction">auction</Link>
+                  <Link to="/auction">Approved Products</Link>
                 </li>
 
                 <li>
-                  <Link to="/contactus">contact us</Link>
+                  <Link to="/contactus">Waiting Products</Link>
                 </li>
                 <li>
-                  <Link to="/aboutus">about us</Link>
+                  <Link to="/aboutus">Histroy</Link>
                 </li>
                 {auth ?(
-                  <>
-                  <li>
-                  <Link to="/aboutus">checkout</Link>
-                </li>
                   <li onClick={loggedOut}>
                     <Link to="/">logout</Link>
                   </li>
-                  </>
                 ) : (
                   <div className="flex">
                     <li>
-                      <a href="http://localhost:3001/">Sell</a>
+                      <Link to="/sell">Sell</Link>
                     </li>
                     <li>
                       <Link to="/login">login</Link>

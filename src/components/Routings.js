@@ -11,24 +11,18 @@ import ProductDetail from "./Auctions/ProductDetail";
 import CusSignup from "../Auth/Signup";
 import Policy from "./Policy";
 import Terms from "./Terms";
-import { useDispatch } from "react-redux";
-import { getAllCategory, allProducts } from "../actions/index";
-import { useEffect } from "react";
+
 
 function Routings() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getAllCategory());
-  }, []);
-  useEffect(() => {
-    dispatch(allProducts());
-  }, []);
+
+
   return (
     <Router>
       <div>
         <Header />
+
         <Routes>
-          <Route path="/seller" element={<Sell />} />
+          <Route path="/sell" element={<Sell />} />
           <Route path="/aboutus" element={<Aboutus />} />
           <Route path="/contactus" element={<Contactus />} />
           <Route path="/login" element={<Login />} />

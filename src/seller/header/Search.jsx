@@ -59,6 +59,12 @@ filterContent(products, searchText)
             </div>
             <div className="icon f_flex width">
               <i className="fa fa-user icon-circle"></i>
+              <div className="cart">
+                <Link to="/cart">
+                  <i className="fa-solid fa-heart icon-circle"></i>
+                  <span>{}</span>
+                </Link>
+              </div>
             </div>
           </div>
         ) : (
@@ -78,8 +84,8 @@ filterContent(products, searchText)
                   <i className="fa fa-user icon-circle"></i>
                   <div className="cart">
                     <Link to="/cart">
-                      <i className="fa-solid fa-bag-shopping icon-circle"></i>
-                     
+                      <i className="fa-solid fa-heart icon-circle"></i>
+                      <span>{}</span>
                     </Link>
                   </div>
                 </div>

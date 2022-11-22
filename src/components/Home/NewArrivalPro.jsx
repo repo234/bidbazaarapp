@@ -5,6 +5,7 @@ import Data from "../../SliderImages/Data";
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
+import { useSelector } from "react-redux";
 
 const SampleNextArrow = (props) => {
   const { onClick } = props
@@ -54,22 +55,22 @@ const settings = {
   prevArrow: <SamplePrevArrow />,
 }
 
-export default function NewArrivalPro({ productItems }) {
+export default function NewArrivalPro() {
   const [data] = useState(Data.productItems);
- 
+ const products=useSelector(state=>state.products.products)
 
   return (
     <>
     <Slider {...settings}>
   
-        {data.map((product) => {
+        {products.map((product) => {
           return (
-            <div className="box ">
+            <div className="box container h-[10%]">
      
-            <div className="product mtop ">
-            <div className="overflow-hidden  "   key={product.id}>
-              <div className="h-[10%] border-b-2  border-orange">
-                <img src={product.cover} alt="" />
+            <div className="product ">
+            <div className="overflow-hidden "   key={product.id}>
+              <div className="h-[20%] border-b-2  border-orange">
+                <img src={`http://localhost:3000/uploads/${product.images[0].img}`}alt="" />
                 <div className="product-like">
                   <i className="fa-regular fa-heart"></i>
                 </div>

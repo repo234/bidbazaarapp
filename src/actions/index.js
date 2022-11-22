@@ -1,59 +1,45 @@
 import axios from "../helper/axios";
 
-export const depositamoney = (amount) => {
-  return (dispatch) => {
-    dispatch({
-      type: "deposit",
-      payload: amount,
-    });
-  };
-};
-
-export const widthdrawMoney = (amount) => {
-  return (dispatch) => {
-    dispatch({
-      type: "withdraw",
-      payload: amount,
-    });
-  };
-};
-
 export const login = (user) => {
   return async (dispatch) => {
     dispatch({
       type: "LOGIN",
       payload: { ...user },
     });
-    const res = await axios.post("users/login", { ...user });
-    console.log(res);
-    if (
-      res.data.status === "Logged in successfully" &&
-      res.data.user.role === "customer"
-    ) {
-      alert(res.data.status);
-      const token = res.data.data;
-      const user = res.data.user;
-      window.localStorage.setItem("token", token);
-      window.localStorage.setItem("user", JSON.stringify(user));
-      const dataa = JSON.parse(localStorage.getItem("user"));
-      dispatch({
-        type: "LOGIN_SUCCESS",
-        payload: {
-          token: window.localStorage.getItem(token),
-          name: dataa.name,
-          email: dataa.email,
-          id: dataa._id,
-          role: dataa.role,
-        },
+    const res = await axios
+      .post("/api/users/login", { ...user })
+      .then((res) => {
+        console.log(res);
+
+        if (
+          res.data.status === "Logged in successfully" &&
+          res.data.user.role === "customer"
+        ) {
+          alert(res.data.status);
+          const token = res.data.data;
+          const user = res.data.user;
+          window.localStorage.setItem("token", token);
+          window.localStorage.setItem("user", JSON.stringify(user));
+          const dataa = JSON.parse(localStorage.getItem("user"));
+          dispatch({
+            type: "LOGIN_SUCCESS",
+            payload: {
+              token: window.localStorage.getItem(token),
+              name: dataa.name,
+              email: dataa.email,
+              id: dataa._id,
+              role: dataa.role,
+            },
+          });
+        } else if (
+          res.data.status === "Logged in successfully" &&
+          res.data.user.role !== "customer"
+        ) {
+          alert("you are not authorized");
+        } else {
+          alert(res.data.message);
+        }
       });
-    } else if (
-      res.data.status === "Logged in successfully" &&
-      res.data.user.role !== "customer"
-    ) {
-      alert("you are not authorized");
-    } else {
-      alert(res.data.message);
-    }
     if (res.status === 400) {
       alert("Something went wrong");
       dispatch({
@@ -114,8 +100,8 @@ export const singleProduct = (_id) => {
     dispatch({ type: "SINGLE_PRODUCT" });
     const res = await axios.get("/api/products/" + _id);
     console.log(res);
-    if (res.data.products !== "") {
-      const product = res.data.product;
+    if (res.data.product !== "") {
+      const product = await res.data.product;
       dispatch({
         type: "SINGLE_PRODUCT_SUCCESS",
         payload: {

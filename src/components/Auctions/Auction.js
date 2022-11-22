@@ -1,13 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./Auction.css";
 import Products from "./Products";
-import Data from "../../SliderImages/Data";
+import { allProducts, getAllCategory } from "../../actions";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function Auction() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(allProducts());
+  }, []);
+  useEffect(() => {
+    dispatch(getAllCategory());
+  }, []);
   const categories = useSelector((state) => state.categories.categories);
-
+  const products = useSelector((state) => state.products.products);
   return (
     <>
       <section className="home ">
@@ -36,7 +43,7 @@ export default function Auction() {
                   </select>
                 ) : (
                   () => {
-                    "";
+                    "Loading...";
                   }
                 )}
               </div>
@@ -58,9 +65,13 @@ export default function Auction() {
               <i className="fa fa-bolt"></i>
               <h1>On Auction</h1>
             </div>
-            <div className=" bg-sky  d_flex">
-              <Products />
-            </div>
+            {products ? (
+              <div className=" bg-sky  d_flex">
+                <Products />
+              </div>
+            ) : (
+              "no products found"
+            )}
           </div>
         </div>
       </section>

@@ -16,15 +16,18 @@ export default (state = initState, action) => {
       };
       break;
     case "LOGIN_SUCCESS":
-      state = {
-        ...state,
-        token: action.payload.token,
-        name: action.payload.name,
-        email: action.payload.email,
-        id: action.payload.id,
-        role: action.payload.role,
-        auth: true,
-      };
+      {
+        state = {
+          ...state,
+          token: action.payload.token,
+          name: action.payload.name,
+          email: action.payload.email,
+          id: action.payload.id,
+          role: action.payload.role,
+          auth: true,
+        };
+      }
+
       break;
     case "LOGIN_FAILURE":
       state = {

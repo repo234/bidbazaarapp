@@ -5,14 +5,15 @@ import { useNavigate } from "react-router-dom";
 import { login } from "../actions/index";
 import { useDispatch, useSelector } from "react-redux";
 
-export default function Login() {
+export default function SellerLogin() {
   const navigate = useNavigate();
   const auth = useSelector((state) => state.user.auth);
+  const isSeller= useSelector(state=> state.user.isSeller)
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
-
+  const [error, setError] = useState("");
   let name, value;
   const dispatch = useDispatch();
   const handleInp = (e) => {
@@ -26,8 +27,9 @@ export default function Login() {
     dispatch(login(user));
   };
 
-  if (auth) {
-    navigate("./auction");
+  if (auth && isSeller) {
+  window.NavigationPreloadManager.location()
+  
   }
 
   return (
