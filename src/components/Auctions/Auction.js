@@ -2,9 +2,10 @@ import React, { useEffect } from "react";
 import "./Auction.css";
 import Products from "./Products";
 import { allProducts, getAllCategory } from "../../actions";
-
+import Filter from "../Filter";
+import io from "socket.io-client";
 import { useSelector, useDispatch } from "react-redux";
-
+import { toast } from "react-toastify";
 export default function Auction() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -13,64 +14,36 @@ export default function Auction() {
   useEffect(() => {
     dispatch(getAllCategory());
   }, []);
-  const categories = useSelector((state) => state.categories.categories);
+  useEffect(() => {
+    const socket = io.connect("http://localhost:3000");
+
+    socket.on("addAdd", (data) => {
+      toast.info(data.auction);
+    });
+  });
   const products = useSelector((state) => state.products.products);
+
   return (
     <>
-      <section className="home ">
-        <div className="bg-pink  mt-[3%] ">
-          <div className="flex flex-col mt-10">
-            <div className=" flex heading text-[25px]">
-              {" "}
-              <i className="fa fa-bolt mr-4"></i>
-              <h1>Filter</h1>
-            </div>
-
-            <div className=" flex product items-center justify-between mt-3">
-              <div className="flex flex-col   md:flex-row">
-                <p className="mb-3 md:mb-1 text-orange">Categories</p>
-                {categories ? (
-                  <select className="md:ml-3 border-2 p-2 rounded-lg hover:border-orange">
-                    <option selected>Select</option>
-
-                    {categories.map((value, index) => {
-                      return (
-                        <option className="box f_flex" key={index}>
-                          {value.name}
-                        </option>
-                      );
-                    })}
-                  </select>
-                ) : (
-                  () => {
-                    "Loading...";
-                  }
-                )}
-              </div>
-              <div className="  flex flex-col  md:flex-row ">
-                <p className="mb-3 md:mb-1 text-orange">Price</p>
-                <select className=" ml-3 border-2 p-2 rounded-lg hover:border-orange">
-                  <option selected>Lower to higher</option>
-                  <option>Higher to Lower</option>
-                </select>
-              </div>
-            </div>
-          </div>
+      <section className="home container">
+        <div className="  mt-[3%] ">
+          <Filter />
         </div>
-
+        <div className="my-3 text-[25px] font-semibold flex flex-col ">
+          <div className="text-orange flex flex-row">
+            <h1>All Auctions</h1>
+          </div>{" "}
+        </div>
         <div className=" heading flex">
           <div className=" w-full ">
-            <div className="text-[25px] flex">
-              {" "}
-              <i className="fa fa-bolt"></i>
-              <h1>On Auction</h1>
-            </div>
-            {products ? (
-              <div className=" bg-sky  d_flex">
+            {products.length !== 0 ? (
+              <div className="border-t-2 border-orange bg-sky flex flex-col">
                 <Products />
               </div>
             ) : (
-              "no products found"
+              <div className="bg-sky  border-t-2 border-orange flex">
+                no products on auction
+              </div>
             )}
           </div>
         </div>

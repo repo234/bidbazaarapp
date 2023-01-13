@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
-import NewArrivals from "./NewArrivals";
 import Products from "../Auctions/Products";
 import "./Home.css";
+import img from "../../asserts/auction-property-market.png";
 import SliderHome from "./Slider";
 import Wrapper from "./Wrapper";
-
+import io from "socket.io-client";
 import { useDispatch, useSelector } from "react-redux";
 import { allProducts, getAllCategory } from "../../actions";
 
@@ -18,45 +18,30 @@ const Home = () => {
   useEffect(() => {
     dispatch(getAllCategory());
   }, []);
+  const socket = io.connect("http://localhost:3000");
+
+  socket.emit("temp", "hello from client");
+
+  socket.emit("temp", "hello from seler");
   const navigate = useNavigate();
   const products = useSelector((state) => state.products.products);
   return (
     <>
       <section className="home ">
-        <div className="container  d_flex">
-          <SliderHome />
+        <div className="mx-[3%] ">
+          <div className=" w-[100%]">
+            {" "}
+            <img src={img} className=" w-full object-cover opacity-90 h-96  " />
+          </div>
+          <div className="  mt-[-10%]">
+            {" "}
+            <SliderHome />
+          </div>
         </div>
-        {products ? (
-          <>
-            <section className="flash bg-sky">
-              <div>
-                <div className="heading  flex">
-                  <div className="flex text-2xl w-full">
-                    {" "}
-                    <i className="fa fa-bolt"></i>
-                    <h1>Recommended</h1>
-                  </div>
-                  <div
-                    className="text-right text-orange underline  hover:cursor-pointer hover:hover:underline-offset-4 mx-4 pr-4  w-[10%]"
-                    onClick={() => {
-                      navigate("/auction");
-                    }}
-                  >
-                    See all
-                  </div>
-                </div>
-                {products ? (
-                  <Products products={products} />
-                ) : (
-                  "no products found"
-                )}
-              </div>
-            </section>
-          </>
-        ) : (
-          ""
-        )}
-
+        <div className="border">
+          <div> how it works</div>
+          <div></div>
+        </div>
         <div className="bg-black ">
           <Wrapper />
         </div>

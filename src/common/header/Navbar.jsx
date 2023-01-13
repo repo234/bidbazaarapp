@@ -18,18 +18,7 @@ const Navbar = () => {
   return (
     <>
       <header className="header">
-        <div className="container d_flex">
-          <div
-            className="catgrories  d_flex"
-            onClick={() => {
-              setCategory(!category);
-            }}
-          >
-            <span className="fa-solid fa-border-all"></span>
-            <h4>
-              Categories <i className="fa fa-chevron-down"></i>
-            </h4>
-          </div>
+        <div className="container  ">
           <div className="navlink">
             <div className="md:hidden navlink  ">
               <div
@@ -43,22 +32,47 @@ const Navbar = () => {
                 )}
               </div>
             </div>
-            <div>
+            <div className="w-full ">
               <ul
                 className={
                   MobileMenu
-                    ? " bg-grey nav-links-MobileMenu"
-                    : "link flex capitalize "
+                    ? " bg-orange  navtext nav-links-mobile "
+                    : "link flex justify-center items-center capitalize  "
                 }
                 onClick={() => setMobileMenu(false)}
               >
-                <li>
-                  <Link to="/">home</Link>
-                </li>
+                {
+                  auth?(""):( <li>
+                    <Link to="/">home</Link>
+                  </li>)
+                }
+               
                 <li>
                   <Link to="/auction">auction</Link>
                 </li>
-
+                {auth ?(
+                  <>
+                   <li>
+                  <Link to="myAuctions">My Auctions</Link>
+                </li>
+                <li>
+                  <Link to="myBids">My Bids</Link>
+                </li>
+                 <li>
+                  <Link to="/myAllProducts">My products</Link>
+                </li>
+                <li>
+                  <Link to="/addproduct">Add Products</Link>
+                </li>
+                <li>
+                  <Link to="/order">orders</Link>
+                </li>
+                  <li>
+                  <Link to="/checkout">payment</Link>
+                </li>
+                </>
+                ) : ("")
+}
                 <li>
                   <Link to="/contactus">contact us</Link>
                 </li>
@@ -67,18 +81,14 @@ const Navbar = () => {
                 </li>
                 {auth ?(
                   <>
-                  <li>
-                  <Link to="/aboutus">checkout</Link>
-                </li>
+                  
                   <li onClick={loggedOut}>
                     <Link to="/">logout</Link>
                   </li>
                   </>
                 ) : (
                   <div className="flex">
-                    <li>
-                      <a href="http://localhost:3001/">Sell</a>
-                    </li>
+                   
                     <li>
                       <Link to="/login">login</Link>
                     </li>

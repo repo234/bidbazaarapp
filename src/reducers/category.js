@@ -1,5 +1,6 @@
 const initState = {
   categories: [],
+  category: [],
   error: null,
 };
 
@@ -9,6 +10,12 @@ export default (state = initState, action) => {
       state = {
         ...state,
         categories: action.payload.categories,
+      };
+      break;
+    case "CATEGORIES_FOUND":
+      state = {
+        ...state,
+        category: action.payload.category,
       };
       break;
     case "CATEGORIES_FAILURE":

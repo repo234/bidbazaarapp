@@ -27,4 +27,13 @@
     left: 0;
     margin: auto;
   }
-  
+  .div1{
+z-index: 1;
+border: solid 2px;
+position: absolute
+
+  }
+  .div2{
+z-index: 3;
+border: solid 2px;
+  }

@@ -56,7 +56,7 @@
 /*------search-----------*/
 .navlink{
   height: 8vh;
- 
+
 }
 .catgrories {
  
@@ -87,7 +87,7 @@ header {
 }
 
 header ul li a {
-
+ 
 
   transition: 0.5s;
   font-size: 15px;
@@ -99,11 +99,11 @@ header ul li a:hover {
 
 .open {
   display: none;
-
+  
 }
 .search.active {
 
-  
+ 
   height: 12vh;
   position: fixed;
   top: 0;
@@ -116,7 +116,8 @@ header ul li a:hover {
 
 @media (max-width: 768px) {
   header ul {
-    padding-top: 100px;
+    padding-top: 50px;
+ 
   }
   .col {
     min-width: 50%;
@@ -134,9 +135,11 @@ header ul li a:hover {
   padding: 10px 10px;
   font-size: 17px;
 }
-
+.navtext{
+  color: white;
+}
   .nav-links-mobile {
-    position: absolute;
+    position: relative;
  
     display: block;
     list-style: none;
@@ -144,23 +147,25 @@ header ul li a:hover {
     left: 0;
     top: 0;
     transition: all 0.5s ease-in-out;
-    width: 60%;
+    width: 40%;
     height: 100vh;
     z-index: 888;
+    
   }
   header ul li {
-   
+    color: white;
     width: 100%;
     transition: all 0.5s ease-in-out;
     text-transform: uppercase;
   }
   header .link {
-  
+    color: white;
     display: none;
   }
   .close,
   .open {
-    position:relative;
+   
+    position:absolute;
     color: rgb(202, 59, 16);
     display: block;
     font-size: 25px;
@@ -182,6 +187,6 @@ header ul li a:hover {
   }
   .header.active {
     height: 10vh;
-   
+ 
   }
 }

@@ -29,7 +29,7 @@ const SliderHome = () => {
   };
   const navigate = useNavigate();
   return (
-    <div className="slider h-[540px]  flex items-center mt-8 justify-between mobile:hidden">
+    <div className="slider  h-[540px]  flex items-center  justify-between mobile:hidden">
       {/* left Arrow */}
       <div className={arrowStyle} onClick={prevSlide}>
       <i className="fa-solid fa-caret-left font-[50px]"></i>
@@ -41,7 +41,7 @@ const SliderHome = () => {
       {slides.map((slide, index) => {
         if (index === activeSlide) {
           return (
-            <div className={`wrapper flex w-[100%] h-[500px] items-center justify-center shadow-2xl rounded-lg border-[#c0c0c0] border-10px overflow-hidden relative` + slide.background} key={index}>
+            <div className={`wrapper flex w-[85%] h-[400px] items-center justify-center shadow-2xl rounded-lg border-[#c0c0c0]  border-10px overflow-hidden relative` + slide.background } key={index}>
               <div className={slideStyle}>
                 <div className="flex-1 flex justify-center items-center h-[100%]">
                 <img

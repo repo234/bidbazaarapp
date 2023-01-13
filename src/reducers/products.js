@@ -1,6 +1,8 @@
 const initialState = {
   products: [],
+  auction: [],
   product: [],
+  singleAuction: [],
   notFound: "",
   error: "",
 };
@@ -13,29 +15,25 @@ export default (state = initialState, action) => {
         products: action.payload.products,
       };
       break;
-    case "PRODUCT_NOTFOUND":
-      state = {
-        ...state,
-        notFound: action.payload.notFound,
-      };
-      break;
-    case "PRODUCT_FAILURE":
-      state = {
-        ...state,
-        error: action.payload.error,
-      };
-      break;
-    case "SINGLE_PRODUCT_SUCCESS":
+    case "AUCTION_PRODUCT":
       state = {
         ...state,
         product: action.payload.product,
+        auction: action.payload.auction,
       };
       break;
-    case "SINGLE_PRODUCT_FAILURE":
+    case "BID_ADDED":
       state = {
         ...state,
-        error: action.payload.error,
+        auction: action.payload.auction,
       };
+      break;
+    case "AUCTION_AFTER_END":
+      state = {
+        ...state,
+        singleAuction: action.payload.auction,
+      };
+      break;
   }
   return state;
 };

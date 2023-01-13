@@ -1,5 +1,7 @@
 import axios from "../helper/axios";
-
+import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
+// login
 export const login = (user) => {
   return async (dispatch) => {
     dispatch({
@@ -13,9 +15,9 @@ export const login = (user) => {
 
         if (
           res.data.status === "Logged in successfully" &&
-          res.data.user.role === "customer"
+          res.data.user.role === "user"
         ) {
-          alert(res.data.status);
+          toast.success(res.data.status);
           const token = res.data.data;
           const user = res.data.user;
           window.localStorage.setItem("token", token);
@@ -31,13 +33,8 @@ export const login = (user) => {
               role: dataa.role,
             },
           });
-        } else if (
-          res.data.status === "Logged in successfully" &&
-          res.data.user.role !== "customer"
-        ) {
-          alert("you are not authorized");
         } else {
-          alert(res.data.message);
+          toast.error(res.data.message);
         }
       });
     if (res.status === 400) {
@@ -50,6 +47,7 @@ export const login = (user) => {
   };
 };
 
+//all categories
 export const getAllCategory = () => {
   return async (dispatch) => {
     dispatch({ type: "CATEGORIES_REQUEST" });
@@ -60,20 +58,63 @@ export const getAllCategory = () => {
         type: "CATEGORIES_SUCCESS",
         payload: { categories: res.data },
       });
-    } else {
+    }
+    if (res.status === 400) {
+      alert("Something went wrong");
+      console.log(res.data.error);
       dispatch({
-        type: "CATEGORIES_FAILURE",
+        type: "LOGIN_FAILURE",
         payload: { error: res.data.error },
       });
     }
   };
 };
 
+//single category
+export const getCategory = (id) => {
+  return async (dispatch) => {
+    const res = await axios.get("/api/categories/" + id);
+    console.log(res.data);
+    if (res.data !== "") {
+      dispatch({
+        type: "CATEGORIES_FOUND",
+        payload: { category: res.data },
+      });
+    }
+
+    if (res.status === 400) {
+      alert("Something went wrong");
+      console.log(res.data.error);
+    }
+  };
+};
+
+//all auction products of user
+export const auctionProducts = (id) => {
+  return async (dispatch) => {
+    dispatch({ type: "AUCTION_PRODUCT_REQUEST" });
+    const res = await axios.get("/api/products/user/" + id);
+    console.log(res);
+    if (res.data.products.length !== 0) {
+      const products = res.data.products;
+
+      dispatch({
+        type: "AUCTION_PRODUCT_SUCCESS",
+        payload: { products: products },
+      });
+    }
+
+    if (res.status === 400) {
+      toast.error("Something went wrong");
+      console.log(res.data.error);
+    }
+  };
+};
+
+// all poroducts on auction
 export const allProducts = () => {
   return async (dispatch) => {
-    dispatch({ type: "PRODUCT_REQUEST" });
-    const res = await axios.get("/api/products/");
-    console.log(res);
+    const res = await axios.get("/api/products/auctionedproducts");
     if (res.data.products !== "") {
       const products = res.data.products;
       dispatch({
@@ -82,37 +123,264 @@ export const allProducts = () => {
       });
     }
     if (res.data.products === "") {
+      toast.info("no product found");
+    }
+    if (res.status === 400) {
+      toast.error("Something went wrong");
+      console.log(res.data.error);
+    }
+  };
+};
+
+//get single auction
+export const getAuction = (id) => {
+  return async (dispatch) => {
+    const res = await axios.get("/api/auction/auction/" + id);
+
+    if (res.data.length !== 0) {
+      window.location.reload();
+
       dispatch({
-        type: "PRODUCT_NOTFOUND",
-        payload: { notFound: res.data },
+        type: "AUCTION_PRODUCT",
+        payload: { auction: res.data.auction, product: res.data.product },
       });
-    } else {
+    }
+    if (res.status === 400) {
+      toast.error("Something went wrong");
+      console.log(res.data.error);
+    }
+  };
+};
+
+//get auction detail after ending
+export const getSingleAuction = (id) => {
+  return async (dispatch) => {
+    const res = await axios.get("/api/auction//singleAuction/" + id);
+
+    if (res.data !== "") {
+      window.location.reload();
       dispatch({
-        type: "PRODUCT_FAILURE",
+        type: "AUCTION_AFTER_END",
+        payload: { auction: res.data.auction },
+      });
+    }
+    if (res.status === 400) {
+      console.log(res.data.error);
+      alert("Something went wrong");
+      console.log(res.data.error);
+      dispatch({
+        type: "AUCTION_FAILURE",
         payload: { error: res.data.error },
       });
     }
   };
 };
 
+//update bid
+export const updateBid = (id, bid, user) => {
+  return async (dispatch) => {
+    const res = await axios.put(
+      "/api/auction/bid/" + id,
+      { bid: bid, user: user },
+      {
+        headers: {
+          "x-auth-token": `${localStorage.getItem("token")}`,
+          "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+        },
+      }
+    );
+    console.log(res);
+    if (res.data.message === "bid added successfully") {
+      toast.success(res.data.message);
+      dispatch({
+        type: "BID_ADDED",
+        payload: { auction: res.data.auction },
+      });
+    } else {
+      toast.error(res.data);
+    }
+    if (res.status === 400) {
+      toast.error("Something went wrong");
+      console.log(res.data.error);
+    }
+  };
+};
+
+//inactive products
+export const getInactiveProduct = (id) => {
+  return async (dispatch) => {
+    const res = await axios.get("/api/products/inactive/" + id);
+    console.log(res);
+    if (res.data.products !== "") {
+      const products = res.data.products;
+      dispatch({
+        type: "INACTIVE_PRODUCT_SUCCESS",
+        payload: { inacproducts: products },
+      });
+    } else if (res.data.products === "") {
+      toast.info("no products yet");
+    }
+    if (res.data.status === 400) {
+      toast.error("Something went wrong");
+      console.log(res.data.error);
+    }
+  };
+};
+
+export const addProduct = (form) => {
+  return async (dispatch) => {
+    dispatch({ type: "ADD_PRODUCT" });
+    const res = await axios.post("/api/products/create", form, {
+      headers: {
+        "x-auth-token": `${localStorage.getItem("token")}`,
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    if (res.data === "product created successfully") {
+      toast.success(res.data);
+    } else {
+      toast.error(res.data);
+    }
+    if (res.data.status === 400) {
+      toast.error("Something went wrong");
+      console.log(res.data.error);
+    }
+  };
+};
+
+export const updateProduct = (form, id) => {
+  return async (dispatch) => {
+    const res = await axios.put("/api/products/update/" + id, form, {
+      headers: {
+        "x-auth-token": `${localStorage.getItem("token")}`,
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    if (res.data === "updated") {
+      alert(res.data);
+    }
+    if (res.data.status === 400) {
+      alert("Something went wrong");
+      console.log(res.data.error);
+    }
+  };
+};
+// single product data
 export const singleProduct = (_id) => {
   return async (dispatch) => {
-    dispatch({ type: "SINGLE_PRODUCT" });
     const res = await axios.get("/api/products/" + _id);
-    console.log(res);
-    if (res.data.product !== "") {
-      const product = await res.data.product;
+    if (res.data !== "") {
+      const product = res.data;
       dispatch({
         type: "SINGLE_PRODUCT_SUCCESS",
         payload: {
           product: product,
         },
       });
+    } else if (res.data === "") {
+      toast.info("no products found");
     } else {
-      dispatch({
-        type: "SINGLE_PRODUCT_FAILURE",
-        payload: { error: res.data.error },
-      });
+      toast.info("Something went wrong");
+      console.log(res.data.error);
+    }
+  };
+};
+
+export const activeProduct = (id) => {
+  return async (dispatch) => {
+    const res = await axios.patch("/api/products/active/" + id);
+    console.log(res);
+    if (res.data === "product activated") {
+      toast.success("product activated");
+    }
+    if (res.status === 400) {
+      toast.info("Something went wrong");
+      console.log(res.data.error);
+    }
+  };
+};
+
+export const createAuction = (id) => {
+  return async (dispatch) => {
+    const res = await axios.post("/api/auction/" + id);
+    console.log(res);
+
+    if (res.status === 400) {
+      toast.info("Something went wrong");
+      console.log(res.data.error);
+    }
+  };
+};
+
+export const deactiveProduct = (id) => {
+  return async (dispatch) => {
+    const res = await axios.patch("/api/products/deactive/" + id);
+    console.log(res.data);
+  };
+};
+
+export const endAuction = (id) => {
+  return async (dispatch) => {
+    const res = await axios.patch("/api/auction/end/" + id);
+    console.log(res.data);
+  };
+};
+
+export const inprogressbidHistory = (id) => {
+  return async (dispatch) => {
+    const res = await axios.get("/api/auction/inprogresshistory/" + id);
+    console.log(res.data);
+    dispatch({
+      type: "BIDHISTORY_SUCCESS",
+      payload: {
+        bidHistory: res.data,
+      },
+    });
+    if (res.data.status === 400) {
+      toast.info("Something went wrong");
+      console.log(res.data.error);
+    }
+  };
+};
+
+export const bidHistory = (product, auction, userId) => {
+  return async (dispatch) => {
+    const data = {
+      image: product.images[0].img,
+      name: product.name,
+      price: auction.currentPrice,
+      totalBids: auction.bids.length,
+      auctioned: "end",
+      status: userId === JSON.stringify(auction.winner) ? "won" : "loss",
+      paymentStatus: userId === JSON.stringify(auction.winner) ? "unpaid" : "-",
+      userId: userId,
+    };
+    console.log(data);
+    const res = await axios.post("/api/history/bidhistory", {
+      data,
+    });
+    if (res.data.status === 400) {
+      toast.info("Something went wrong");
+      console.log(res.data.error);
+    }
+  };
+};
+
+export const getbidHistory = (userid) => {
+  return async (dispatch) => {
+    const res = await axios.get("/api/history/bidhistory/" + userid);
+    console.log(res.data);
+
+    dispatch({
+      type: "GETBIDHISTORY_SUCCESS",
+      payload: {
+        getbidHistory: res.data,
+      },
+    });
+
+    if (res.data.status === 400) {
+      toast.info("Something went wrong");
+      console.log(res.data.error);
     }
   };
 };

@@ -13,6 +13,7 @@ module.exports = {
       sky: "#f6f9fc",
       white: "#ffffff",
       pink: " #fff0e6",
+      green: "#007500",
       black: "#262626",
     },
     screens: {

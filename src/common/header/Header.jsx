@@ -8,11 +8,11 @@ import { useSelector } from "react-redux"
 const Header = () => {
 
   return (
-    <>
+    <div >
       <Head />
       <Search  />
       <Navbar />
-    </>
+    </div>
   )
 }
 

@@ -5,28 +5,22 @@ const initState = {
   id: "",
   error: "",
   token: null,
+
   auth: false,
 };
 
 export default (state = initState, action) => {
   switch (action.type) {
-    case "LOGIN":
+    case "LOGIN_SUCCESS":
       state = {
         ...state,
+        token: action.payload.token,
+        name: action.payload.name,
+        email: action.payload.email,
+        id: action.payload.id,
+        role: action.payload.role,
+        auth: true,
       };
-      break;
-    case "LOGIN_SUCCESS":
-      {
-        state = {
-          ...state,
-          token: action.payload.token,
-          name: action.payload.name,
-          email: action.payload.email,
-          id: action.payload.id,
-          role: action.payload.role,
-          auth: true,
-        };
-      }
 
       break;
     case "LOGIN_FAILURE":
