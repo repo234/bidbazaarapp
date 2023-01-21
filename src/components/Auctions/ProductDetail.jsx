@@ -1,18 +1,17 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Countdown from "react-countdown";
-import { bidHistory, updateBid  } from "../../actions";
+import { bidHistory, updateBid, updatebidHistory  } from "../../actions";
 import io from "socket.io-client";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-const renderer = ({ days, hours, minutes, seconds, completed , }) => {
+const renderer = ({ days, hours, minutes, seconds, completed ,props  }) => {
   
   if (completed) {
   
-   return ""
+  return ""
   } else {
-    return (
+    return ( 
       <span>
         <div className="  flex flex-wrap -m-4 ml-2  ">
           <div className=" jsutify-content-between align-item-center"></div>
@@ -147,7 +146,11 @@ const category=useSelector(state=>state.categories.category)
                   className="mt-8 p-3 w-[50%] ml-[25%]"
                   onClick={() => {
                     dispatch(updateBid(auction._id, bid, user));
-                    
+                    if( attempt.length === 0){
+                      dispatch(bidHistory(product,auction, bid, user))
+                    }else if(attempt.length >=1){
+                     dispatch(updatebidHistory(user, auction._id, bid, auction.bids.length))
+                    }
                   }}
                 >
                   place bid

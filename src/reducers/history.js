@@ -1,6 +1,7 @@
 const initState = {
   bidHistory: [],
   getBidHistory: [],
+  unpaid: [],
 };
 
 export default (state = initState, action) => {
@@ -15,6 +16,12 @@ export default (state = initState, action) => {
       state = {
         ...state,
         getBidHistory: action.payload.getbidHistory,
+      };
+      break;
+    case "UNPAIDPRODUCTS_SUCCESS":
+      state = {
+        ...state,
+        unpaid: action.payload.unpaid,
       };
       break;
   }

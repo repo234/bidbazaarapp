@@ -343,16 +343,17 @@ export const inprogressbidHistory = (id) => {
   };
 };
 
-export const bidHistory = (product, auction, userId) => {
+export const bidHistory = (product, auction, bid, userId) => {
   return async (dispatch) => {
     const data = {
       image: product.images[0].img,
       name: product.name,
-      price: auction.currentPrice,
-      totalBids: auction.bids.length,
-      auctioned: "end",
-      status: userId === JSON.stringify(auction.winner) ? "won" : "loss",
-      paymentStatus: userId === JSON.stringify(auction.winner) ? "unpaid" : "-",
+      price: bid,
+      totalBids: auction.bids.length + 1,
+      auctionId: auction._id,
+      auctioned: "in progress",
+      status: "-",
+      paymentStatus: "-",
       userId: userId,
     };
     console.log(data);
@@ -378,6 +379,55 @@ export const getbidHistory = (userid) => {
       },
     });
 
+    if (res.data.status === 400) {
+      toast.info("Something went wrong");
+      console.log(res.data.error);
+    }
+  };
+};
+export const updatebidHistory = (user, auction, highestprice, totalBids) => {
+  return async (dispatch) => {
+    const res = await axios.put("/api/history/bidhistory/update", {
+      user: user,
+      auctionId: auction,
+      price: highestprice,
+      totalBids: totalBids,
+    });
+
+    if (res.data.status === 400) {
+      toast.info("Something went wrong");
+      console.log(res.data.error);
+    }
+  };
+};
+export const endbidHistory = (user, auction) => {
+  return async (dispatch) => {
+    console.log(user);
+    console.log(auction.winner);
+    const res = await axios.put("/api/history/bidhistory/end", {
+      user: user,
+      auctionId: auction._id,
+      price: auction.currentPrice,
+      totalBids: auction.bids.length,
+      status: user === auction.winner ? "won" : "loss",
+      paymentStatus: user === auction.winner ? "unpaid" : "-",
+    });
+    if (res.data.status === 400) {
+      toast.info("Something went wrong");
+      console.log(res.data.error);
+    }
+  };
+};
+export const getunpaidProducts = (userid) => {
+  return async (dispatch) => {
+    const res = await axios.get("/api/history/bidhistory/unpaid/" + userid);
+    console.log(res.data);
+    dispatch({
+      type: "UNPAIDPRODUCTS_SUCCESS",
+      payload: {
+        unpaid: res.data,
+      },
+    });
     if (res.data.status === 400) {
       toast.info("Something went wrong");
       console.log(res.data.error);

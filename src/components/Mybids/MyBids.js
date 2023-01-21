@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import {
   inprogressbidHistory,
   getCategory,
-  singleProduct,
   getbidHistory,
   getAuction,
 } from "../../actions";
@@ -16,6 +15,7 @@ export default function MyBids() {
   useEffect(() => {
     dispatch(inprogressbidHistory(id));
     dispatch(getbidHistory(id));
+    console.log("yes");
   }, []);
   const proBiddata = useSelector((state) => state.history.bidHistory);
   const historyBid = useSelector((state) => state.history.getBidHistory);
@@ -25,12 +25,7 @@ export default function MyBids() {
         <div class="h-full">
           <div class="w-[90%]  mx-auto bg-white  ">
             <header class="px-2 py-4 shadow-sm ">
-              <h2
-                class="font-semibold text-oran
-              ge"
-              >
-                In Progress
-              </h2>
+              <h2 class="font-semibold text-orange">In Progress</h2>
             </header>
             <div class="p-3">
               <div class="overflow-x-auto">
