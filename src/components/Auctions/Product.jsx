@@ -8,7 +8,7 @@ import Auctionend from "./Auctionend";
 
 const renderer = ({ days, hours, minutes, seconds, completed, props }) => {
   if (completed) {
-    
+  
 return <Auctionend product={props.item} auction={props.auc}/>
   } else {
     return (

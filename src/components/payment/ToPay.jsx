@@ -56,7 +56,9 @@ export default function ToPay() {
                       <div class="font-semibold text-center">winning date</div>
                     </th>
                     <th class="p-2 px-3 whitespace-nowrap">
-                      <div class="font-semibold text-center">Expiration date</div>
+                      <div class="font-semibold text-center">
+                        Expiration date
+                      </div>
                     </th>
 
                     <th class="p-2  px-3 whitespace-nowrap">
@@ -128,23 +130,18 @@ export default function ToPay() {
             </div>
           </div>
         </div>
-        <div className="container text-xs">deleivery charges will be calculated at checkout step</div>
-        <div className="flex-col mt-2 container">
-        <div className="  container relative top-2 flex ">
-          
-          <div className=" ml-2">total</div>
-          <div className=" absolute right-2 font-bold">RS: {total}</div>
-  
-         
-       
+        <div className="container text-xs">
+          deleivery charges will be calculated at checkout step
         </div>
-        
-        <button className=" p-1 text-sm mt-4 ml-[90%] ">Checkout</button>
+        <div className="flex-col mt-2 container">
+          <div className="  container relative top-2 flex ">
+            <div className=" ml-2">total</div>
+            <div className=" absolute right-2 font-bold">RS: {total}</div>
           </div>
-      
- 
+
+          <button className=" p-1 text-sm mt-4 ml-[90%] ">Checkout</button>
+        </div>
       </div>
-     
     </div>
   );
 }
