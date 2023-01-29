@@ -5,7 +5,7 @@ import { bidHistory, updateBid, updatebidHistory  } from "../../actions";
 import io from "socket.io-client";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-const renderer = ({ days, hours, minutes, seconds, completed ,props  }) => {
+const renderer = ({ days, hours, minutes, seconds, completed  }) => {
   
   if (completed) {
   

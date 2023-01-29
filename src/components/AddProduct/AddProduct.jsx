@@ -75,11 +75,12 @@ export default function AddProduct() {
     form.append("discription", data.discription);
     form.append("active", active);
     form.append("used", data.used)
+    form.append("weight", data.weight)
     for (let pic of images) {
       form.append("images", pic);
     }
       dispatch(addProduct(form));
-     navigate("myAuctions")
+     navigate("/myAllProducts")
     }
   };
   return (
@@ -104,6 +105,7 @@ export default function AddProduct() {
               </label>
               <input
                 type="text"
+              
                 className="block  w-full px-4 py-2 mt-2  shadow-md  bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                 {...register("name", {
                   required: " * name is required",
@@ -121,7 +123,7 @@ export default function AddProduct() {
             <p className="text-orange font-bold">{errors.name?.message}</p>
             <div className="flex ">
               <div className="flex flex-col  mr-5 w-[40%]">
-                <div className="   md:mt-[18%]  sm:mt-[55%]">
+                <div className=" md:mt-[18%]  sm:mt-[55%]">
                   <label
                     htmlFor="price"
                     className="block text-sm font-bold text-black"
@@ -129,6 +131,7 @@ export default function AddProduct() {
                     price
                   </label>
                   <input
+                  placeholder="400"
                     type="number"
                     className="block w-full px-4 py-2 mt-2  shadow-md  bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                     {...register("price", {
@@ -144,11 +147,11 @@ export default function AddProduct() {
                     })}
                   />
                 </div>
-                <p className="text-orange font-bold ">
+                <p className="text-orange  font-bold ">
                   {errors.price?.message}
                 </p>
               </div>
-
+           
               <div className="flex flex-col w-[40%]  ">
                 <div className=" md:mt-[18%]  sm:mt-[55%] mr-5 ">
                   <label
@@ -159,6 +162,7 @@ export default function AddProduct() {
                   </label>
                   <input
                     type="number"
+                    placeholder="1"
                     className="block w-full px-4 py-2 mt-2  shadow-md  bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                     {...register("quantity", {
                       required: "* quantity is required",
@@ -175,10 +179,11 @@ export default function AddProduct() {
                     htmlFor="time"
                     className=" block  text-sm font-bold  text-black "
                   >
-                    Auction duration (minimum 1 maximum 4320 hours)
+                    Auctioned time (between 1 to 4320)
                   </label>
                   <input
                     type="number"
+                    placeholder="5"
                     className="block w-full px-4 py-2 mt-2  shadow-md  bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                     {...register("time", {
                       required: "* time is required",
@@ -196,27 +201,39 @@ export default function AddProduct() {
                 <p className="text-orange font-bold">{errors.time?.message}</p>
               </div>
             </div>
+            
+           
             <div className="flex ">
-              <div className="flex flex-col w-[50%] ">
+           
+              <div className="flex flex-col w-[50%]">
                 <div className="  pt-[18%] mr-5 ">
                   <label
-                    htmlFor="condition"
+                    htmlFor="weight"
                     className="block text-sm font-bold text-black"
                   >
-                    condition
+                   weight (Kg)
                   </label>
                   <input
-                    type="text"
-                    className="block w-full px-4 py-2 mt-2  shadow-md  bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                    {...register("condition", {
-                      required: "* condition is required",
+                    type="number"
+                    placeholder="0.0"
+                    step="0.1"
+                    className="block  w-full px-4 py-2 mt-2  shadow-md  bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                    {...register("weight", {
+                      required: "*weight is required",
+                      min: {
+                        value: 0.1,
+                        message: "* weight must be more then 0.0",
+                      },
+                     
                     })}
                   />
                 </div>
-                <p className="text-orange font-bold">
-                  {errors.condition?.message}
+                <p className="text-orange font-bold ">
+                  {errors.weight?.message}
                 </p>
               </div>
+            
+
               <div className="flex flex-col w-[50%] ">
                 <div className="  pt-[18%] mr-5 ">
                   <label
@@ -280,6 +297,27 @@ export default function AddProduct() {
                 </p>
               </div>
             </div>
+            <div className="flex flex-col w-full ">
+                <div className="  pt-[2%] mr-5 ">
+                  <label
+                    htmlFor="condition"
+                    className="block text-sm font-bold text-black"
+                  >
+                    condition
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="e.g in good condition just a little dent on right"
+                    className="block w-full px-4 py-2 mt-2  shadow-md  bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                    {...register("condition", {
+                      required: "* condition is required",
+                    })}
+                  />
+                </div>
+                <p className="text-orange font-bold">
+                  {errors.condition?.message}
+                </p>
+              </div>
             <div className="flex flex-col mb-4">
               <div className="  pt-[4%]  ">
                 <label
@@ -290,6 +328,7 @@ export default function AddProduct() {
                 </label>
                 <textarea
                   type="text"
+                  placeholder="e.g it is box with length width height of 5, 6 ,3 cm color brown"
                   className="block w-full px-4 py-2 mt-3 shadow-md  bg-white rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                   {...register("discription", {
                     required: "* discription is required",

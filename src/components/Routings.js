@@ -23,6 +23,9 @@ import EmailVerify from "../Auth/EmailVerify";
 import { ToastContainer } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
+import PasswordReset from "../Auth/PasswordReset";
+import ForgotPassword from "../Auth/ForgotPassword";
+import Error from "../Auth/Error";
 
 function Routings() {
   return (
@@ -38,6 +41,7 @@ function Routings() {
             path="/inacProductDetail"
             element={<InactiveProductDetail />}
           />
+          <Route path="/error" element={<Error />} />
           <Route path="/updateProduct/:id" element={<UpdateProduct />} />
           <Route path="/myAllProducts" element={<AllProducts />} />
           <Route path="/auctionProductDetail" element={<ProDetail />} />
@@ -45,6 +49,11 @@ function Routings() {
           <Route path="/auction" element={<Auction />} />
           <Route path="/myBids" element={<MyBids />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/password-reset" element={<PasswordReset />} />
+          <Route
+            path="/forgotpassword/:id/:token"
+            element={<ForgotPassword />}
+          />
           <Route path="/order" element={<Order />} />
           <Route path="/checkout" element={<Payment />} />
           <Route path="/privacypolicy" element={<Policy />} />
@@ -56,6 +65,7 @@ function Routings() {
             element={<EmailVerify />}
           />
           <Route path="/productDetail" element={<ProductDetail />} />
+
           <Route path="/" element={<Home />} />
         </Routes>
         <Footer />

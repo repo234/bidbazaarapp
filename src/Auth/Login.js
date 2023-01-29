@@ -106,11 +106,11 @@ export default function Login() {
             </div>
             <div className="text-base  text-center text-orange font-bold hover:underline">
               {" "}
-              <Link to=""> Forget Password?</Link>
+              <Link to="/password-reset"> Forget Password?</Link>
             </div>
 
             <div className="mt-6">
-              <button className="w-full px-4 py-2 font-bold w-full px-4 py-2 font-bold shadow-md text-white rounded-lg  bg-orange focus:bg-orange focus:ring focus:ring-orange focus:focus:bg-opacity-70">
+              <button className="w-full px-4 py-2 font-bold  shadow-md text-white rounded-lg  bg-orange focus:bg-orange focus:ring focus:ring-orange focus:focus:bg-opacity-70">
                 Login
               </button>
             </div>

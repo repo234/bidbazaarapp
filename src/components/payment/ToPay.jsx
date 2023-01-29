@@ -1,27 +1,47 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-
+import Countdown from "react-countdown";
 import { useDispatch, useSelector } from "react-redux";
 import { getunpaidProducts } from "../../actions";
-
+const expired=()=>{
+  console.log("helo")
+}
+const renderer = ({ days, hours, minutes, seconds, completed ,props }) => {
+  
+  if (completed) {
+  
+  expired()
+  } else {
+    return ( 
+     
+        <div className="  flex flex-wrap -m-4 ml-2  ">
+          <div className=" jsutify-content-between align-item-center"></div>
+          {days * 24 + hours} : {minutes} : {seconds}
+        </div>
+    );
+  }
+}; 
 export default function ToPay() {
   const [isChecked, setisChecked] = useState([]);
   const [total, setTotal] = useState(0);
+  const [totalShipping, setShipping] = useState(0);
   const user = useSelector((state) => state.user.id);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getunpaidProducts(user));
   }, []);
   const unpaidproducts = useSelector((state) => state.history.unpaid);
-  const handlecheckbox = (e, price) => {
+  const handlecheckbox = (e, price, shipping) => {
     const { value, checked } = e.target;
     console.log(price);
     if (checked) {
       setisChecked([...isChecked, value]);
       setTotal(price + total);
+      setShipping(shipping +totalShipping)
     } else {
       setisChecked(isChecked.filter((e) => e !== value));
       setTotal(price - total);
+      setShipping(shipping - totalShipping)
     }
   };
 
@@ -48,6 +68,9 @@ export default function ToPay() {
                     </th>
                     <th class="p-2  px-3 whitespace-nowrap">
                       <div class="font-semibold text-center">Price</div>
+                    </th>
+                    <th class="p-2  px-3 whitespace-nowrap">
+                      <div class="font-semibold text-center">shipping</div>
                     </th>
                     <th class="p-2  px-3 whitespace-nowrap">
                       <div class="font-semibold text-center">totalbids</div>
@@ -81,7 +104,7 @@ export default function ToPay() {
                                 type="checkbox"
                                 value={data._id}
                                 checked={data.isChecked}
-                                onChange={(e) => handlecheckbox(e, data.price)}
+                                onChange={(e) => handlecheckbox(e, data.price, data.shipping)}
                               />
                             </td>
                             <td class="p-2 whitespace-nowrap ">
@@ -103,16 +126,20 @@ export default function ToPay() {
                               <div class="text-center ">{data.price}</div>
                             </td>
                             <td class="p-2 whitespace-nowrap">
-                              <div class="text-center ">{data.totalBids}</div>
+                              <div class="text-center ">{data.shipping}</div>
                             </td>
                             <td class="p-2 whitespace-nowrap">
+                              <div class="text-center ">{data.totalBids}</div>
+                            </td>
+                            <td class="p-2 whitespace-nowrap ">
                               <div class="text-center font-medium text-green-500">
-                                {data.totalBids}
+                                {data.winningDate}
                               </div>
                             </td>
                             <td class="p-2 whitespace-nowrap">
                               <div class="text-sm text-center">
-                                {data.auctioned}
+                              <Countdown date={data.duration} expiry={data.expirationDate} renderer={renderer} />
+
                               </div>
                             </td>
                             <td class="p-2 whitespace-nowrap">
@@ -130,15 +157,21 @@ export default function ToPay() {
             </div>
           </div>
         </div>
-        <div className="container text-xs">
-          deleivery charges will be calculated at checkout step
-        </div>
+  
         <div className="flex-col mt-2 container">
+        <div className="  container   relative top-2 flex ">
+            <div className=" ml-2">shipping</div>
+            <div className=" absolute right-2 font-bold">RS: {totalShipping}</div>
+          </div>
           <div className="  container relative top-2 flex ">
             <div className=" ml-2">total</div>
             <div className=" absolute right-2 font-bold">RS: {total}</div>
           </div>
-
+          ----------------------------------------------------------------------------------------------------------------------
+          <div className=" py-2 container relative top-2 flex ">
+            <div className=" ml-2">grand total</div>
+            <div className=" absolute right-2 font-bold">RS: {total+totalShipping}</div>
+          </div>
           <button className=" p-1 text-sm mt-4 ml-[90%] ">Checkout</button>
         </div>
       </div>

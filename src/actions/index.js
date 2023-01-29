@@ -1,6 +1,5 @@
 import axios from "../helper/axios";
 import { toast } from "react-toastify";
-import { useSelector } from "react-redux";
 // login
 export const login = (user) => {
   return async (dispatch) => {
@@ -43,6 +42,18 @@ export const login = (user) => {
         type: "LOGIN_FAILURE",
         payload: { error: res.data.error },
       });
+    }
+  };
+};
+
+export const resetPassword = (email) => {
+  return async (dispatch) => {
+    const res = await axios.post("/api/users/resetPasswordlink", { email });
+    if (res) {
+      toast.info(res.data.message);
+    }
+    if (res.status === 400) {
+      toast.error("Something went wrong");
     }
   };
 };
