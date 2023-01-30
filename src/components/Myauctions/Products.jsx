@@ -5,9 +5,9 @@ import { getAuction, getCategory } from "../../actions/index";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-export default function Products() {
+export default function Products({products}) {
 
-  const products = useSelector((state) => state.userproducts.activeproducts);
+  
   const navigate = useNavigate();
   const dispatch = useDispatch();
   return (

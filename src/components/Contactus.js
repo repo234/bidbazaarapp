@@ -8,9 +8,11 @@ export default function Contactus() {
   return (
     <div>
       <div className="text-gray-600 body-font">
-        <div className="container px-5 py-24 mx-auto ">
-          <div className="p-4 mb-10 ">
-            <h1 className="text-3xl text-orange font-bold">Contact us</h1>
+        <div className="container px-5 py-20 mx-auto ">
+          <div className=" mb-10 ">
+            <h1 className="text-3xl text-orange text-center font-bold">
+              WHERE TO FIND US?
+            </h1>
           </div>
           <div className="flex flex-wrap -m-4 ">
             <div className="p-4 md:w-1/3 ">
@@ -64,7 +66,7 @@ export default function Contactus() {
           </div>
         </div>
       </div>
-      <div className="text-gray-600 body-font  mb-20 bg-grey">
+      <div className="text-gray-600 body-font  mb-20 bg-pink ">
         <div className="container px-5 py-24 mx-auto flex flex-wrap items-center ">
           <div className="lg:w-3/5 md:w-1/2 ml-[25%]  md:ml-0 md:pr-18 lg:pr-0 pr-0 ">
             <div className="w-[15%] h-[15%]  rounded-full inline-flex items-center justify-center bg-gray-200 text-gray-400">
@@ -81,14 +83,14 @@ export default function Contactus() {
               Any question? We'd love to here from you
             </p>
           </div>
-          <div className="lg:w-2/6 md:w-1/2 bg-gray-100 border-orange border-4 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
-            <h2 className="text-gray-900 text-lg font-medium title-font mb-5">
+          <div className="lg:w-2/6 md:w-1/2 bg-gray-100 border-orange bg-orange border-4 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
+            <h2 className="text-gray-900 text-lg font-medium text-white text-center title-font mb-5">
               Leave your message
             </h2>
             <div className="relative mb-4 ">
               <label
                 for="full-name"
-                className="leading-7 text-sm text-gray-600 "
+                className="leading-7 text-sm text-gray-600 text-white"
               >
                 Full Name
               </label>
@@ -100,7 +102,10 @@ export default function Contactus() {
               />
             </div>
             <div className="relative mb-4">
-              <label for="email" className="leading-7 text-sm text-gray-600">
+              <label
+                for="email"
+                className="text-white leading-7 text-sm text-gray-600"
+              >
                 Email
               </label>
               <input
@@ -118,7 +123,7 @@ export default function Contactus() {
                 required
               />
             </div>
-            <button className="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+            <button className="text-white  bg-black border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">
               Send
             </button>
           </div>

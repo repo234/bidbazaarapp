@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import logo from "../../asserts/Logo.png";
 
 const Navbar = () => {
   // Toogle Menu
@@ -18,8 +19,19 @@ const Navbar = () => {
   return (
     <>
       <header className="header">
-        <div className="container  ">
-          <div className="navlink">
+        <div className="mx-[3%] flex ">
+        <div className="items-center my-1 flex h-full  relative">
+              <div className="w-[50px] md:flex-shrink-0">
+                <img src={logo} alt="loding..." />
+              </div>
+              <div>
+                <h1 className=" mr-4 text-2xl font-bold sm:text-3xl text-orange">
+                  BidBazaar
+                </h1>
+              </div>
+            </div>
+          <div className="navlink ">
+          
             <div className="md:hidden navlink  ">
               <div
                 className="toggle"

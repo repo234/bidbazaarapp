@@ -65,17 +65,17 @@ export default function InactiveProduct({ product }) {
                       
                       }}
                     >
-                      <i class=" fa-sharp fa-solid fa-eye"></i>
+                      <i class=" hover:underline underline-offset-4 cursor-pointer fa-sharp fa-solid fa-eye"></i>
                     </div>
                     <div className=" px-1" onClick={() => {
                         dispatch(singleProduct(product._id));
                         dispatch(getCategory(product.categoryId))
                         navigate("/updateProduct/"+product._id);
                     }}>
-                      <i class="fa-sharp fa-solid fa-pen"></i>
+                      <i class="hover:underline underline-offset-4 cursor-pointer fa-sharp fa-solid fa-pen"></i>
                     </div>
                     <div className=" px-1" onClick={() => {}}>
-                      <i class=" fa-solid fa-trash-can"></i>
+                      <i class=" hover:underline cursor-pointer underline-offset-4 fa-solid fa-trash-can"></i>
                     </div>
                   </div>
                 </div>

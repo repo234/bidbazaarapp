@@ -57,8 +57,9 @@ export default function InactiveProductDetail() {
             </div>
           </div>
   
-          <div className=" product w-full  flex-[1.3] lg:w-1/2 flex-wrap flex flex-col sm:items-start md:items-center  justify-items-center mt-10 ">
-            <h1 className=" mb-5 text-[40px] ">{product.name}</h1>
+          <div className=" product w-full border  flex-[1.3] lg:w-1/2 flex-wrap flex flex-col sm:items-start md:items-center  justify-items-center mt-10 ">
+            
+            <h1 className=" mb-5 text-[40px] capitalize underline-offset-4 underline ">{product.name}</h1>
   
             <div className="container">
               <div className=" pt-3  text-xl text-orange">Item Info</div>

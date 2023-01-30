@@ -6,8 +6,8 @@ import WiningPage from "./WiningPage";
 import Product from "./Product";
 
 
-export default function Products() {
-  const products = useSelector((state) => state.products.products);
+export default function Products({products}) {
+  
   const navigate = useNavigate();
   const dispatch = useDispatch();
   return (

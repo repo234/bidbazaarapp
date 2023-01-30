@@ -2,8 +2,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 import InactiveProduct from "./InactiveProduct";
 
-export default function InactiveProducts() {
-  const products = useSelector((state) => state.userproducts.inactivePro);
+export default function InactiveProducts({products}) {
+  
   return (
     <section >
       {

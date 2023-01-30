@@ -15,42 +15,41 @@ export default function MyBids() {
   useEffect(() => {
     dispatch(inprogressbidHistory(id));
     dispatch(getbidHistory(id));
-    console.log("yes");
   }, []);
   const proBiddata = useSelector((state) => state.history.bidHistory);
   const historyBid = useSelector((state) => state.history.getBidHistory);
   return (
     <div>
-      <section class="flex flex-col justify-center antialiased bg-gray-100 text-gray-600 my-[3%]">
+      <section class="flex flex-col justify-center  my-[3%]">
         <div class="h-full">
-          <div class="w-[90%]  mx-auto bg-white  ">
-            <header class="px-2 py-4 shadow-sm ">
-              <h2 class="font-semibold text-orange">In Progress</h2>
+          <div class="w-[90%]   mx-auto   ">
+            <header class="px-2 shadow-none py-4 ">
+              <h2 class="font-semibold underline text-orange text-lg">
+                In Progress
+              </h2>
             </header>
             <div class="p-3">
               <div class="overflow-x-auto">
                 <table class="table-auto w-full">
-                  <thead class="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
+                  <thead class=" text-xs font-semibold uppercase text-gray-400 bg-gray-50">
                     <tr>
-                      <th class="p-2 whitespace-nowrap">
+                      <th class="md:p-2 p-1  whitespace-nowrap">
                         <div class="font-semibold text-left">Product</div>
                       </th>
-                      <th class="p-2 whitespace-nowrap">
+                      <th class="md:p-2 p-1 whitespace-nowrap">
                         <div class="font-semibold text-left">My price</div>
                       </th>
-                      <th class="p-2 whitespace-nowrap">
-                        <div class="font-semibold text-left">
-                          Heighest Price
-                        </div>
+                      <th class="md:p-2 p-1 whitespace-nowrap">
+                        <div class="font-semibold text-left">Heighest</div>
                       </th>
                       <th class="p-2 whitespace-nowrap">
                         <div class="font-semibold text-left">Total bids</div>
                       </th>
-                      <th class="p-2 whitespace-nowrap">
+                      <th class="md:p-2 p-1 whitespace-nowrap">
                         <div class="font-semibold text-left">Auctioned</div>
                       </th>
 
-                      <th class="p-2 whitespace-nowrap">
+                      <th class="md:p-2 p-1 whitespace-nowrap">
                         <div class="font-semibold text-center">Status</div>
                       </th>
                     </tr>
@@ -119,13 +118,15 @@ export default function MyBids() {
             </div>
           </div>
           <div class="w-[90%] mx-auto mt-5 bg-white ">
-            <header class="px-2 py-4  shadow-sm">
-              <h2 class="font-semibold text-orange">History</h2>
+            <header class="px-2 py-4  shadow-none">
+              <h2 class="font-semibold underline text-orange text-lg">
+                History
+              </h2>
             </header>
             <div class="p-3">
               <div class="overflow-x-auto">
                 <table class="table-auto w-full">
-                  <thead class="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
+                  <thead class=" text-xs font-semibold uppercase text-gray-400 bg-gray-50">
                     <tr>
                       <th class="p-2 whitespace-nowrap">
                         <div class="font-semibold text-left">Product</div>

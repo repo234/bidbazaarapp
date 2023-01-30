@@ -47,9 +47,9 @@ export default function ToPay() {
 
   return (
     <div className="  container">
-      <div className="border w-full product">
+      <div className="border  w-full product">
         <div class="w-[90%]  mx-auto bg-white  ">
-          <header class="px-3 py-4 shadow-sm ">
+          <header class="px-3 py-4 shadow-none ">
             <h2 class="font-semibold text-lg text-orange">Products to pay</h2>
             <div class=" text-orange text-sm">
               If you don't pay the product within one day you may loss it
@@ -58,7 +58,7 @@ export default function ToPay() {
           <div class="p-3 mt-5">
             <div class="overflow-x-auto">
               <table class="table-auto w-full">
-                <thead class="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
+                <thead class="text-xs font-semibold uppercase ">
                   <tr>
                     <th class="p-2  px-3 whitespace-nowrap">
                       <div class="font-semibold text-center ">#</div>
