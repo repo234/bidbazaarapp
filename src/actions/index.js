@@ -413,8 +413,6 @@ export const updatebidHistory = (user, auction, highestprice, totalBids) => {
 };
 export const endbidHistory = (user, auction) => {
   return async (dispatch) => {
-    console.log(user);
-    console.log(auction.winner);
     const res = await axios.put("/api/history/bidhistory/end", {
       user: user,
       auctionId: auction._id,
@@ -439,6 +437,19 @@ export const getunpaidProducts = (userid) => {
         unpaid: res.data,
       },
     });
+    if (res.data.status === 400) {
+      toast.info("Something went wrong");
+      console.log(res.data.error);
+    }
+  };
+};
+
+export const expiredProduct = (id) => {
+  return async (dispatch) => {
+    const res = await axios.put("/api/history/bidhistory/expired" + id);
+    if (res.data == "expired") {
+      window.location.reload();
+    }
     if (res.data.status === 400) {
       toast.info("Something went wrong");
       console.log(res.data.error);

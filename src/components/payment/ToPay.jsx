@@ -2,21 +2,20 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import Countdown from "react-countdown";
 import { useDispatch, useSelector } from "react-redux";
-import { getunpaidProducts } from "../../actions";
-const expired=()=>{
-  console.log("helo")
-}
-const renderer = ({ days, hours, minutes, seconds, completed ,props }) => {
+import { getunpaidProducts , expiredProduct} from "../../actions";
+import Expired from "./Expired";
+
+const renderer = ({  completed ,props }) => {
   
   if (completed) {
-  
-  expired()
+  return <Expired product={props.product}/>
+ 
   } else {
     return ( 
      
         <div className="  flex flex-wrap -m-4 ml-2  ">
-          <div className=" jsutify-content-between align-item-center"></div>
-          {days * 24 + hours} : {minutes} : {seconds}
+       { props.expiry}
+        
         </div>
     );
   }
@@ -31,6 +30,7 @@ export default function ToPay() {
     dispatch(getunpaidProducts(user));
   }, []);
   const unpaidproducts = useSelector((state) => state.history.unpaid);
+ 
   const handlecheckbox = (e, price, shipping) => {
     const { value, checked } = e.target;
     console.log(price);
@@ -138,7 +138,7 @@ export default function ToPay() {
                             </td>
                             <td class="p-2 whitespace-nowrap">
                               <div class="text-sm text-center">
-                              <Countdown date={data.duration} expiry={data.expirationDate} renderer={renderer} />
+                              <Countdown date={data.duration} expiry={data.expirationDate} product={data._id} renderer={renderer} />
 
                               </div>
                             </td>
