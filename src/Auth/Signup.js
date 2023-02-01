@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
+import WiningPage from "../components/Auctions/WiningPage";
 
 export default function Signup() {
   const {
@@ -18,6 +19,7 @@ export default function Signup() {
   const password = watch("password");
   const [passwordEye, setPasswordEye] = useState(false);
   const [conpasswordEye, setConPasswordEye] = useState(false);
+
   const handleEye = () => {
     setPasswordEye(!passwordEye);
   };
@@ -25,38 +27,32 @@ export default function Signup() {
     setConPasswordEye(!conpasswordEye);
   };
   const onSubmit = async (data) => {
-    if (data.length === 0) {
-      console.log("empty");
-    } else {
-      await axios
-        .post(
-          "/api/users/register",
+    let res = await axios.post(
+      "/api/users/register",
 
-          {
-            name: data.name,
-            email: data.email,
-            password: data.password,
-            province: data.province,
-            city: data.city,
-            address: data.address,
-            postal: data.postal,
-            mobile: data.mobile,
-            terms: data.terms,
-            role: "user",
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        )
-        .then(function (res) {
-          toast.info(res.data.message);
-        })
-        .catch(function (error) {
-          alert("Something went wrong");
-          console.log(error);
-        });
+      {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        province: data.province,
+        city: data.city,
+        address: data.address,
+        postal: data.postal,
+        mobile: data.mobile,
+        terms: data.terms,
+        role: "user",
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (res.data) {
+      toast.info(res.data.message);
+    }
+    if (res.status === 400) {
+      toast.info("Something went wrong");
     }
   };
 
@@ -208,7 +204,9 @@ export default function Signup() {
                 type="text"
                 className="block w-full px-4 shadow-sm py-2 mt-2  bg-white border rounded-sm focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                 name="address"
-                {...register("address", { required: "* address is required" })}
+                {...register("address", {
+                  required: "* address is required",
+                })}
               />
             </div>
             <p className="text-orange text-sm">{errors.address?.message}</p>

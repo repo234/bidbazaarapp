@@ -7,6 +7,7 @@ const initState = {
   token: null,
 
   auth: false,
+  user: [],
 };
 
 export default (state = initState, action) => {
@@ -27,6 +28,13 @@ export default (state = initState, action) => {
       state = {
         ...state,
         error: action.payload.error,
+      };
+
+      break;
+    case "GET_USER":
+      state = {
+        ...state,
+        user: action.payload.user,
       };
 
       break;

@@ -1,8 +1,8 @@
 import React from "react";
 import img from "../../asserts/party.png"
 
-export default function WiningPage({ visible }) {
-  if (!visible) return null;
+export default function WiningPage({ loding }) {
+  if (!loding) return null;
   return (
     <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-currentPrice">
       <div className="bg-white justify-center  h-[50%]  w-[50%] rounded-2xl mt-[10%] shadow-lg">

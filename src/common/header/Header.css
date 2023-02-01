@@ -7,7 +7,6 @@
 
 }
 
-
 .search-box {
 
   width: 100%;
@@ -67,6 +66,7 @@ width: auto;
   padding: 0px 30px;
   border-radius: 5px;
   height: 8vh;
+  
  
 }
 .catgrories span {
@@ -93,17 +93,19 @@ header {
 header ul li a {
  
 
+ 
   transition: 0.5s;
   font-size: 15px;
   font-weight: 400;
 }
 header ul li a:hover {
-  color: rgb(202, 59, 16);
+  color: yellow;
+
 }
 
 .open {
   display: none;
-  
+ 
 }
 .search.active {
 
@@ -131,6 +133,7 @@ header ul li a:hover {
   color: white;
 }
   .nav-links-mobile {
+  
     position: relative;
  
     display: block;
@@ -139,25 +142,28 @@ header ul li a:hover {
     left: 0;
     top: 0;
     transition: all 0.5s ease-in-out;
-    width: 40%;
-    height: 100vh;
+    width: 100%;
+    height: 140vh;
     z-index: 888;
-    
+   
   }
   header ul li {
-    color: white;
+   
     width: 100%;
     transition: all 0.5s ease-in-out;
     text-transform: uppercase;
+  text-align: center;
   }
   header .link {
-    color: white;
+   
     display: none;
+   
   }
   .close,
   .open {
-   
+
     position:absolute;
+   
     color: rgb(202, 59, 16);
     display: block;
     font-size: 25px;
@@ -165,7 +171,7 @@ header ul li a:hover {
     
   }
   .close {
-    right: 45%;
+    right: 20%;
  
   }
   .close.home-btn {

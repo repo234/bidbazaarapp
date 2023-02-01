@@ -7,7 +7,8 @@ import {
   createAuction,
   deletePro,
   singleProduct,
-  getCategory
+  getCategory,
+  deleteProduct
 } from "../../actions";
 
 export default function InactiveProduct({ product }) {
@@ -30,9 +31,7 @@ export default function InactiveProduct({ product }) {
                     alt="loding"
                   />
                 </div>
-                <div className="product-like ">
-                  <i className="fa-regular fa-heart"></i>
-                </div>
+               
               </div>
               <div className="product-details mt-3 ">
                 <h3 className="underline ">{product.name}</h3>
@@ -74,7 +73,10 @@ export default function InactiveProduct({ product }) {
                     }}>
                       <i class="hover:underline underline-offset-4 cursor-pointer fa-sharp fa-solid fa-pen"></i>
                     </div>
-                    <div className=" px-1" onClick={() => {}}>
+                    <div className=" px-1" onClick={() => {
+                      dispatch(deleteProduct(product._id))
+                      
+                    }}>
                       <i class=" hover:underline cursor-pointer underline-offset-4 fa-solid fa-trash-can"></i>
                     </div>
                   </div>

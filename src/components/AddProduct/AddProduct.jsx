@@ -31,7 +31,7 @@ export default function AddProduct() {
   } = useForm({
     mode: "onTouched",
   });
-  const [selectedImages, setSelectedImages] = useState([]);
+  const [selectedImages, setSelectedImages] = useState();
   const [images, setImages] = useState([]);
   const [imageError, setImageError] = useState("");
 

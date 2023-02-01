@@ -45,6 +45,42 @@ export const login = (user) => {
     }
   };
 };
+// get user
+export const getUser = (id) => {
+  return async (dispatch) => {
+    const res = await axios.get("/api/users/" + id).then((res) => {
+      console.log(res.data);
+
+      if (res.data.length !== 0) {
+        dispatch({
+          type: "GET_USER",
+          payload: {
+            user: res.data,
+          },
+        });
+      } else {
+        toast.error(res.data);
+      }
+    });
+    if (res.status === 400) {
+      alert("Something went wrong");
+      console.log(res.data.error);
+    }
+  };
+};
+
+//delete user
+export const deleteaccount = (id) => {
+  return async (dispatch) => {
+    const res = await axios.delete("/api/users/" + id);
+    if (res) {
+      toast.info(res.data);
+    }
+    if (res.status === 400) {
+      toast.error("Something went wrong");
+    }
+  };
+};
 
 export const resetPassword = (email) => {
   return async (dispatch) => {
@@ -240,7 +276,6 @@ export const getInactiveProduct = (id) => {
 
 export const addProduct = (form) => {
   return async (dispatch) => {
-    dispatch({ type: "ADD_PRODUCT" });
     const res = await axios.post("/api/products/create", form, {
       headers: {
         "x-auth-token": `${localStorage.getItem("token")}`,
@@ -259,14 +294,16 @@ export const addProduct = (form) => {
   };
 };
 
-export const updateProduct = (form, id) => {
+export const updateProduct = (id, form) => {
   return async (dispatch) => {
-    const res = await axios.put("/api/products/update/" + id, form, {
+    console.log(form);
+    const res = await axios.put("/api/products/updateproduct/" + id, form, {
       headers: {
         "x-auth-token": `${localStorage.getItem("token")}`,
         "Content-Type": "multipart/form-data",
       },
     });
+
     if (res.data === "updated") {
       alert(res.data);
     }
@@ -280,15 +317,14 @@ export const updateProduct = (form, id) => {
 export const singleProduct = (_id) => {
   return async (dispatch) => {
     const res = await axios.get("/api/products/" + _id);
-    if (res.data !== "") {
-      const product = res.data;
+    if (res.data.length !== 0) {
       dispatch({
         type: "SINGLE_PRODUCT_SUCCESS",
         payload: {
-          product: product,
+          product: res.data,
         },
       });
-    } else if (res.data === "") {
+    } else if (res.data.length === 0) {
       toast.info("no products found");
     } else {
       toast.info("Something went wrong");
@@ -449,6 +485,20 @@ export const expiredProduct = (id) => {
     const res = await axios.put("/api/history/bidhistory/expired" + id);
     if (res.data == "expired") {
       window.location.reload();
+    }
+    if (res.data.status === 400) {
+      toast.info("Something went wrong");
+      console.log(res.data.error);
+    }
+  };
+};
+
+export const deleteProduct = (id) => {
+  return async (dispatch) => {
+    const res = await axios.delete("/api/products/delete/" + id);
+    if (res.data) {
+      window.location.reload();
+      toast.info(res.data);
     }
     if (res.data.status === 400) {
       toast.info("Something went wrong");

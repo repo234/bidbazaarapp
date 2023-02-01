@@ -26,6 +26,7 @@ import "react-toastify/dist/ReactToastify.css";
 import PasswordReset from "../Auth/PasswordReset";
 import ForgotPassword from "../Auth/ForgotPassword";
 import Error from "../Auth/Error";
+import Profile from "./Profile/Profile";
 
 function Routings() {
   return (
@@ -49,6 +50,7 @@ function Routings() {
           <Route path="/auction" element={<Auction />} />
           <Route path="/myBids" element={<MyBids />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/password-reset" element={<PasswordReset />} />
           <Route
             path="/forgotpassword/:id/:token"
