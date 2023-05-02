@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import Countdown from "react-countdown";
 import { useDispatch, useSelector } from "react-redux";
-import { getunpaidProducts , expiredProduct} from "../../actions";
+import { useNavigate } from "react-router-dom";
+import { getunpaidProducts } from "../../actions";
 import Expired from "./Expired";
 
 const renderer = ({  completed ,props }) => {
@@ -26,6 +27,7 @@ export default function ToPay() {
   const [totalShipping, setShipping] = useState(0);
   const user = useSelector((state) => state.user.id);
   const dispatch = useDispatch();
+  const navigate=useNavigate()
   useEffect(() => {
     dispatch(getunpaidProducts(user));
   }, []);
@@ -36,12 +38,12 @@ export default function ToPay() {
     console.log(price);
     if (checked) {
       setisChecked([...isChecked, value]);
-      setTotal(price + total);
-      setShipping(shipping +totalShipping)
+      setTotal( total+price);
+      setShipping(totalShipping+shipping )
     } else {
       setisChecked(isChecked.filter((e) => e !== value));
-      setTotal(price - total);
-      setShipping(shipping - totalShipping)
+      setTotal(total-price);
+      setShipping( totalShipping-shipping)
     }
   };
 
@@ -139,7 +141,6 @@ export default function ToPay() {
                             <td class="p-2 whitespace-nowrap">
                               <div class="text-sm text-center">
                               <Countdown date={data.duration} expiry={data.expirationDate} product={data._id} renderer={renderer} />
-
                               </div>
                             </td>
                             <td class="p-2 whitespace-nowrap">
@@ -172,7 +173,10 @@ export default function ToPay() {
             <div className=" ml-2">grand total</div>
             <div className=" absolute right-2 font-bold">RS: {total+totalShipping}</div>
           </div>
-          <button className=" p-1 text-sm mt-4 ml-[90%] ">Checkout</button>
+          <button className=" p-1 text-sm mt-4 ml-[90%] " onClick={()=>{
+            navigate("/checkoutpayment")
+          
+          }}>Checkout</button>
         </div>
       </div>
     </div>

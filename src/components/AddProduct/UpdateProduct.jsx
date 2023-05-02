@@ -356,14 +356,6 @@ export default function AddProduct() {
                 {errors.discription?.message}
               </p>
             </div>
-            <input
-              id="images"
-              type="file"
-              name="images"
-              onChange={onSelectFile}
-              accept="image/png , image/jpeg, image/webp, image/jpg"
-            />
-            <p className="text-orange  font-bold">{imageError}</p>
             <div className="flex  p-4 flex-wrap relative shadow-sm">
               {selectedImages &&
                 selectedImages.map((image, index) => {

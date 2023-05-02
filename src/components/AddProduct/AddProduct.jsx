@@ -31,25 +31,20 @@ export default function AddProduct() {
   } = useForm({
     mode: "onTouched",
   });
-  const [selectedImages, setSelectedImages] = useState();
+  const [selectedImages, setSelectedImages] = useState([]);
   const [images, setImages] = useState([]);
   const [imageError, setImageError] = useState("");
 
   const [active] = useState(false);
   const categories = useSelector((state) => state.categories.categories);
-
-  console.log(images);
-
   const onSelectFile = (event) => {
     setImageError("");
     setImages([...images, event.target.files[0]]);
     const selectedFiles = event.target.files;
     const selectedFilesArray = Array.from(selectedFiles);
-
     const imagesArray = selectedFilesArray.map((file) => {
       return URL.createObjectURL(file);
     });
-
     setSelectedImages((previousImages) => previousImages.concat(imagesArray));
     event.target.value = "";
   };

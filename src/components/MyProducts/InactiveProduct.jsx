@@ -60,7 +60,7 @@ export default function InactiveProduct({ product }) {
                         dispatch(singleProduct(product._id));
                         dispatch(getCategory(product.categoryId))
                         navigate("/inacProductDetail");
-                        window.location.reload()
+                     
                       
                       }}
                     >

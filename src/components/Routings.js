@@ -18,7 +18,7 @@ import AllProducts from "./MyProducts/AllProducts";
 import ProDetail from "./Myauctions/ProDetail";
 import UpdateProduct from "./AddProduct/UpdateProduct";
 import InactiveProductDetail from "./MyProducts/InactivePrductDetails";
-import Order from "./orders/Order";
+
 import EmailVerify from "../Auth/EmailVerify";
 import { ToastContainer } from "react-toastify";
 
@@ -56,11 +56,13 @@ function Routings() {
             path="/forgotpassword/:id/:token"
             element={<ForgotPassword />}
           />
-          <Route path="/order" element={<Order />} />
+
           <Route path="/checkout" element={<Payment />} />
+
           <Route path="/privacypolicy" element={<Policy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/cusSignup" element={<CusSignup />} />
+
           <Route path="/addproduct" element={<AddProduct />} />
           <Route
             path="/api/users/:id/verify/:token"

@@ -162,6 +162,7 @@ export const auctionProducts = (id) => {
 export const allProducts = () => {
   return async (dispatch) => {
     const res = await axios.get("/api/products/auctionedproducts");
+    console.log(res);
     if (res.data.products !== "") {
       const products = res.data.products;
       dispatch({
@@ -178,7 +179,25 @@ export const allProducts = () => {
     }
   };
 };
-
+export const allProductsCategory = (categoryId) => {
+  return async (dispatch) => {
+    const res = await axios.get("/api/products/" + categoryId);
+    if (res.data.products !== "") {
+      const products = res.data.products;
+      dispatch({
+        type: "PRODUCT_SUCCESS",
+        payload: { products: products },
+      });
+    }
+    if (res.data.products === "") {
+      toast.info("no product found");
+    }
+    if (res.status === 400) {
+      toast.error("Something went wrong");
+      console.log(res.data.error);
+    }
+  };
+};
 //get single auction
 export const getAuction = (id) => {
   return async (dispatch) => {
@@ -244,7 +263,7 @@ export const updateBid = (id, bid, user) => {
         payload: { auction: res.data.auction },
       });
     } else {
-      toast.error(res.data);
+      toast.info(res.data);
     }
     if (res.status === 400) {
       toast.error("Something went wrong");
@@ -274,6 +293,28 @@ export const getInactiveProduct = (id) => {
   };
 };
 
+//inactive products
+export const getInactiveProductbyCat = (id, category) => {
+  return async (dispatch) => {
+    const res = await axios.get("/api/products/inactivecat/" + id, {
+      category,
+    });
+    console.log(res.data);
+    if (res.data.products !== "") {
+      const products = res.data.products;
+      dispatch({
+        type: "INACTIVE_PRODUCT_SUCCESS",
+        payload: { inacproducts: products },
+      });
+    } else if (res.data.products === "") {
+      toast.info("no products yet");
+    }
+    if (res.data.status === 400) {
+      toast.error("Something went wrong");
+      console.log(res.data.error);
+    }
+  };
+};
 export const addProduct = (form) => {
   return async (dispatch) => {
     const res = await axios.post("/api/products/create", form, {
@@ -317,7 +358,7 @@ export const updateProduct = (id, form) => {
 export const singleProduct = (_id) => {
   return async (dispatch) => {
     const res = await axios.get("/api/products/" + _id);
-    if (res.data.length !== 0) {
+    if (res.data !== "") {
       dispatch({
         type: "SINGLE_PRODUCT_SUCCESS",
         payload: {
@@ -396,6 +437,7 @@ export const bidHistory = (product, auction, bid, userId) => {
       image: product.images[0].img,
       name: product.name,
       price: bid,
+      sellerId: auction.userId,
       totalBids: auction.bids.length + 1,
       auctionId: auction._id,
       auctioned: "in progress",
@@ -482,7 +524,7 @@ export const getunpaidProducts = (userid) => {
 
 export const expiredProduct = (id) => {
   return async (dispatch) => {
-    const res = await axios.put("/api/history/bidhistory/expired" + id);
+    const res = await axios.put("/api/history/bidhistory/expired/" + id);
     if (res.data == "expired") {
       window.location.reload();
     }
@@ -505,4 +547,8 @@ export const deleteProduct = (id) => {
       console.log(res.data.error);
     }
   };
+};
+
+export const filterInactive = (key) => {
+  return async (dispatch) => {};
 };

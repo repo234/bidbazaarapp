@@ -57,10 +57,7 @@ const Navbar = () => {
                   auth?(""):( <><li>
                     <Link to="/">home</Link>
                   </li>
-                  <li>
-                    <Link to="/api/users/:id/verify/:token">email</Link>
-                  </li>
-                  
+              
                   </>
                   )
                 }
@@ -82,9 +79,7 @@ const Navbar = () => {
                 <li>
                   <Link to="/addproduct">Add Products</Link>
                 </li>
-                <li>
-                  <Link to="/order">orders</Link>
-                </li>
+               
                   <li>
                   <Link to="/checkout">payment</Link>
                 </li>
@@ -108,10 +103,10 @@ const Navbar = () => {
                     
  
 
-                    <div className="border p-2 mt-0 rounded-full px-3 bg-orange" onClick={()=>{
+                    <div className="border p-2  rounded-full px-3 bg-orange" onClick={()=>{
 navigate("/profile")
 window.location.reload()
-                    }}> <i class="fa-solid fa-user "></i></div>
+                    }}> <i class="fa-solid fa-user  "></i></div>
                   </li>
                   </>
                 ) : (

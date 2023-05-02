@@ -5,14 +5,12 @@ import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
-import { resetPassword } from "../actions";
 import logo from "../asserts/Logo.png";
 
 export default function ForgotPassword() {
   const { id, token } = useParams();
   const navigate = useNavigate();
 
-  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -31,7 +29,7 @@ export default function ForgotPassword() {
           "Content-Type": "application/json",
         },
       });
-      if (res.data.status == 201) {
+      if (res.data.status === 201) {
         console.log("user valid");
       } else {
         toast.info(res.data.message);
@@ -65,6 +63,7 @@ export default function ForgotPassword() {
         toast.info(res.data.message);
       } else if (res.data.status === 401) {
         navigate("/*");
+        console.log(res.data);
       } else if (res.data.status === 400) {
         toast.info(res.data.message);
       }

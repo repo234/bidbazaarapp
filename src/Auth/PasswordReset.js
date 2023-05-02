@@ -53,7 +53,10 @@ export default function PasswordReset() {
             <p className="text-orange font-bold">{errors.email?.message}</p>
 
             <div className="mt-6">
-              <button className="w-full px-4 py-2 font-bold  shadow-md text-white rounded-lg  bg-orange focus:bg-orange focus:ring focus:ring-orange focus:focus:bg-opacity-70">
+              <button
+                type="button"
+                className="w-full px-4 py-2 font-bold  shadow-md text-white rounded-lg  bg-orange focus:bg-orange focus:ring focus:ring-orange focus:focus:bg-opacity-70"
+              >
                 Send
               </button>
             </div>

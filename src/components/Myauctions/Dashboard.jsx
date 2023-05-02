@@ -13,14 +13,12 @@ export default function Dashboard() {
   }, []);
   const products = useSelector((state) => state.userproducts.activeproducts);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(1);
+  const [postsPerPage] = useState(10);
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = products.slice(indexOfFirstPost, indexOfLastPost);
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-  console.log(indexOfLastPost);
-  console.log(indexOfFirstPost);
-  console.log(currentPosts);
+  const categories = useSelector((state) => state.categories.categories);
   
   return (
     <div>
@@ -28,7 +26,52 @@ export default function Dashboard() {
 
         <section className="flash container">
         <div className="  mt-[3%] ">
-          <Filter />
+        <div>
+            {" "}
+            <div className="flex  flex-col mt-10">
+              <div className=" flex bg-pink  flex-col md:flex-row p-2 items-center shadow-sm justify-between mt-3">
+                <div className="flex  ">
+                  <div className="flex flex-col ml-8 md:ml-2 md:flex-row">
+                    <p className="my-3 md:mb-1 font-bold text-orange">
+                      Categories
+                    </p>
+                    {categories ? (
+                      <select
+                      onChange={(e) => {
+                        if (e.target.value === "") {
+                          dispatch(auctionProducts(id));
+                        } else {
+                         
+                        }
+                      }}
+                        className="md:ml-3 border text-sm p-2 rounded-sm hover:border-orange"
+                      >
+                        <option value="" selected>
+                          Select
+                        </option>
+
+                        {categories.map((value, index) => {
+                          return (
+                            <option
+                              value={value._id}
+                              className="box f_flex"
+                              key={index}
+                            >
+                              {value.name}
+                            </option>
+                          );
+                        })}
+                      </select>
+                    ) : (
+                      <div className="bg-sky  border-t-2 border-orange flex">
+                        Loding.....
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
         </div>
          <div className="my-5">
           {products.length !== 0  ? (
