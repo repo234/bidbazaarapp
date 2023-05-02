@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/npm%20install%20--save%20gh-pagesbidbazaarapp/static/css/main.712580f3.css",
+    "main.js": "/npm%20install%20--save%20gh-pagesbidbazaarapp/static/js/main.86fadf6a.js",
+    "static/js/787.b8dc3d04.chunk.js": "/npm%20install%20--save%20gh-pagesbidbazaarapp/static/js/787.b8dc3d04.chunk.js",
+    "static/media/auction-property-market.png": "/npm%20install%20--save%20gh-pagesbidbazaarapp/static/media/auction-property-market.b6e976de3d2ca73f4074.png",
+    "static/media/about2.jpg": "/npm%20install%20--save%20gh-pagesbidbazaarapp/static/media/about2.97fbb5507a2fdc7826d3.jpg",
+    "static/media/about1.jpg": "/npm%20install%20--save%20gh-pagesbidbazaarapp/static/media/about1.649e28f4b2a2466cffa2.jpg",
+    "static/media/slider3.webp": "/npm%20install%20--save%20gh-pagesbidbazaarapp/static/media/slider3.90a4de25de30d63150aa.webp",
+    "static/media/party.png": "/npm%20install%20--save%20gh-pagesbidbazaarapp/static/media/party.cabb9e0cfa40c1e7754b.png",
+    "static/media/slider2.webp": "/npm%20install%20--save%20gh-pagesbidbazaarapp/static/media/slider2.fc7a01a92e2138028a96.webp",
+    "static/media/cont3.jpg": "/npm%20install%20--save%20gh-pagesbidbazaarapp/static/media/cont3.4aeccde70982579575d9.jpg",
+    "static/media/cont2.jpg": "/npm%20install%20--save%20gh-pagesbidbazaarapp/static/media/cont2.279eda93e3d4271d63c8.jpg",
+    "static/media/cont1.jpg": "/npm%20install%20--save%20gh-pagesbidbazaarapp/static/media/cont1.7cee216bd3ff811f96e6.jpg",
+    "static/media/sileder1.jpg": "/npm%20install%20--save%20gh-pagesbidbazaarapp/static/media/sileder1.e8eaab5e5827fea86095.jpg",
+    "index.html": "/npm%20install%20--save%20gh-pagesbidbazaarapp/index.html",
+    "main.712580f3.css.map": "/npm%20install%20--save%20gh-pagesbidbazaarapp/static/css/main.712580f3.css.map",
+    "main.86fadf6a.js.map": "/npm%20install%20--save%20gh-pagesbidbazaarapp/static/js/main.86fadf6a.js.map",
+    "787.b8dc3d04.chunk.js.map": "/npm%20install%20--save%20gh-pagesbidbazaarapp/static/js/787.b8dc3d04.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.712580f3.css",
+    "static/js/main.86fadf6a.js"
+  ]
+}
